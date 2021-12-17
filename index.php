@@ -16,15 +16,40 @@
 </head>
 
 <body>
-  <section class="container-liquid row min-vh-100">
-    <div class="col-7 landingpage-background">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Howler</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownId">
+            <a class="dropdown-item" href="#">Action 1</a>
+            <a class="dropdown-item" href="#">Action 2</a>
+          </div>
+        </li>
+      </ul>
+      <div class="text-right">
+        <form class="form-inline my-2 my-lg-0 mr-0 col-12">
+          <input class="form-control mr-sm-2" type="text" placeholder="Username">
+          <input class="form-control mr-sm-2" type="text" placeholder="Password">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Login</button>
+        </form>
+        <div class="col-12 text-light text-center">
+          Don't have an account?
+          <a href="./register.php">Sign up</a>
+        </div>
+      </div>
     </div>
-    <div class="col-5" style="background-color: black;">
-      <form method="POST">
-        <input type="text" class="form-control form-control-sm" name="username" placeholder="Username" required>
-      </form>
-    </div>
-  </section>
+  </nav>
   <!-- Optional JavaScript; choose one of the two! -->
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
