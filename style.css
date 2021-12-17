@@ -1,6 +1,8 @@
-.landingpage-background {
-  background-image: url(./6314.jpg);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
+.body {
+  background-image: url(./landpage-background.svg);
+  background-size: contain; 
+}
+
+.shadow-text {
+  text-shadow: 0 0 5px whitesmoke;
 }
