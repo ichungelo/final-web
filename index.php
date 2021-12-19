@@ -1,4 +1,5 @@
 <?php
+include("./config.php")
 
 ?>
 <!doctype html>
@@ -12,13 +13,14 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
-  <title>Howler</title>
+  <link rel="shortcut icon" href="/assets/images/ichun.png" >
+  <title>Knotype</title>
 </head>
 
 <body class="body">
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-sm navbar-dark">
-    <a class="navbar-brand text-sm" href="#">Howler</a>
+  <nav class="navbar navbar-expand-sm navbar-dark private-style-navbar fixed-top">
+    <a class="navbar-brand text-sm" href="#">Knotype</a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -38,10 +40,10 @@
           </div>
         </li>
       </ul>
-      <div class="text-right">
+      <div>
         <form class="form-inline my-2 my-lg-0 mr-0 col-12">
           <input class="form-control mr-sm-2" type="text" placeholder="Username">
-          <input class="form-control mr-sm-2" type="text" placeholder="Password">
+          <input class="form-control mr-sm-2" type="password" placeholder="Password">
           <button class="btn btn-outline-light my-2 my-sm-0 shadow-text" type="submit">Login</button>
         </form>
         <div class="col-12 text-light text-center">
