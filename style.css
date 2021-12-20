@@ -1,18 +1,37 @@
-.body {
-  background:rgb(105, 0, 100);
-  background: linear-gradient(
-    90deg,
-    rgb(255, 255, 255)0%,
-    rgb(161, 99, 153)40%,
-    rgb(185, 29, 146)80%);
-  background-size: cover; 
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Righteous&display=swap');
+
+* {
+  font-family: 'Lora', serif;
 }
 
-.shadow-text {
-  text-shadow: 0 0 5px rgb(160, 61, 110);
+h1,h2,h3,h4,h5,h6,button,a {
+  font-family: 'Righteous', cursive;
 }
+
+body {
+  background-image: url(./assets/images/background.svg);
+  background-size: contain;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+.private-shadow-text {
+  text-shadow: 0 0 5px white;
+}
+
+.private-style-icon {
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+  border-radius: 20%;
+}
+.private-style-icon:hover {
+  background-color: aliceblue;
+  box-shadow: 3px 3px 5px black;
+}
+
+
 
 .private-style-navbar {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: #005b97;
   box-shadow:0 0 5px black;
 }
