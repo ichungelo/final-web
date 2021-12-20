@@ -20,11 +20,9 @@
 <body class="d-flex flex-column min-vh-100">
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark private-style-navbar">
-    <a class="navbar-brand row" href="#">
-      <img class="col-12" src="./assets/images/ichun.png" alt="logo">
-      <h6 class="col-12 mt-0">
-        Knotext
-      </h6>
+    <a class="navbar-brand " href="./index.php">
+      <img src="./assets/images/ichun.png" alt="logo">
+      Knotype
     </a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -42,7 +40,7 @@
         <form class="form-inline my-2 my-lg-0 mr-0 col-12 justify-content-sm-center">
           <input class="form-control my-1 mr-sm-2" type="text" placeholder="Username">
           <input class="form-control my-1 mr-sm-2" type="password" placeholder="Password">
-          <button class="btn btn-outline-light my-2 my-sm-0 shadow-text" type="submit">Login</button> 
+          <button class="btn btn-outline-light my-2 my-sm-0 shadow-text" type="submit">Login</button>
         </form>
       </div>
     </div>
