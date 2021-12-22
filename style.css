@@ -39,3 +39,8 @@ body {
 .private-style-homeimage {
   width: 50%;
 }
+
+.private-style-avatar {
+  width: 30px;
+  border-radius: 50%;
+}
