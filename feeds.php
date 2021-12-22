@@ -17,15 +17,14 @@ include("./handler.php");
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="/assets/images/ichun.png">
-  <title>Knotext</title>
+  <title>Knotext | <?= $_SESSION['username']?></title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark private-style-navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark private-style-navbar fixed-top">
     <a class="navbar-brand " href="./index.php">
-      <img src="./assets/images/ichun.png" alt="logo">
-      Knotext
+      <?= $_SESSION['username']?>
     </a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -33,10 +32,10 @@ include("./handler.php");
     <div class="collapse navbar-collapse" id="collapsibleNavId">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link private-shadow-text" href="./index.php">Feeds <span class="sr-only">(current)</span></a>
+          <a class="nav-link private-shadow-text" href="./feeds.php">Feeds <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./about.php">About</a>
+          <a class="nav-link" href="./profile.php">Profile</a>
         </li>
       </ul>
       <a class="btn btn-outline-light my-2 my-sm-0 shadow-text" href="./logout.php">Logout</a>
