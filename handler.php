@@ -1,7 +1,7 @@
 <?php
 include("config.php");
 // REGISTER
-if (isset($_POST["register"])) {
+if (isset($_POST['register'])) {
   $email = $_POST['email'];
   $firstName = $_POST['first-name'];
   $lastName = $_POST['last-name'];
@@ -12,13 +12,9 @@ if (isset($_POST["register"])) {
   $usernameCheckQuery = "SELECT username FROM users WHERE username = '$username'";
   $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery);
   if ($password !== $password2) {
-    echo "<script>
-    alert(`Password doesn't match`)
-    </script>";
+    $registerErrorPassword = true;
   } elseif (mysqli_fetch_assoc($usernameCheckHandler)) {
-    echo "<script>
-    alert('Username is already taken')
-    </script>";
+    $registerErrorUsername = true;
   } else {
     $password = password_hash($password, PASSWORD_DEFAULT);
     $registerQuery = "INSERT INTO users (email, first_name, last_name, username, password) VALUES ('$email', '$firstName', '$lastName', '$username', '$password')";
@@ -37,4 +33,31 @@ if (isset($_POST["register"])) {
     </script>";
     }
   }
+}
+
+// LOGIN
+if (isset($_POST['login'])) {
+  $username = $_POST['loginUsername'];
+  $password = $_POST['loginPassword'];
+
+  $usernameCheckQuery = "SELECT * FROM users WHERE username = '$username'";
+  $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery);
+
+  if (mysqli_num_rows($usernameCheckHandler) === 1) {
+    $result = mysqli_fetch_assoc($usernameCheckHandler);
+    if (password_verify($password, $result['password'])) {
+      $user = mysqli_fetch_assoc($usernameCheckHandler);
+      $_SESSION['userId'] = $user['user_id'];
+      $_SESSION['username'] = $user['username'];
+      $_SESSION['loggedIn'] = true;
+
+      header('Location: feeds.php');
+      exit;
+    } else {
+      $loginErrorPassword = true;
+    }
+  } else {
+    $loginErrorUsername = true;
+  }
+
 }
