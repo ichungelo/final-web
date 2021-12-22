@@ -1,6 +1,9 @@
 <?php
-include('./handler.php')
-
+session_start();
+if (isset($_SESSION['loggedIn'])) {
+  header('Location: feeds.php');
+}
+include('./handler.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -37,14 +40,35 @@ include('./handler.php')
         </li>
       </ul>
       <div>
-        <form class="form-inline my-2 my-lg-0 mr-0 col-12 justify-content-sm-center">
-          <input class="form-control my-1 mr-sm-2" type="text" placeholder="Username">
-          <input class="form-control my-1 mr-sm-2" type="password" placeholder="Password">
-          <button class="btn btn-outline-light my-2 my-sm-0 shadow-text" type="submit">Login</button>
+        <form class="form-inline my-2 my-lg-0 mr-0 col-12 justify-content-sm-center" method="POST">
+          <input class="form-control my-1 mr-sm-2" type="text" name="loginUsername" placeholder="Username">
+          <input class="form-control my-1 mr-sm-2" type="password" name="loginPassword" placeholder="Password">
+          <button class="btn btn-outline-light my-2 my-sm-0 shadow-text" name="login">Login</button>
         </form>
       </div>
     </div>
   </nav>
+  <!-- ERROR LOGIN -->
+  <div>
+    <?php
+    if (isset($loginErrorPassword)) {
+    ?>
+      <div class="alert alert-danger m-2" role="alert">
+        Incorrect password
+      </div>
+    <?php
+    }
+    ?>
+    <?php
+    if (isset($loginErrorUsername)) {
+    ?>
+      <div class="alert alert-danger m-2" role="alert">
+        Invalid username
+      </div>
+    <?php
+    }
+    ?>
+  </div>
   <!-- HOMEPAGE -->
   <div class="container-fluid my-3 row">
     <!-- HOMETEXT -->
@@ -57,11 +81,29 @@ include('./handler.php')
     <!-- REGISTER -->
     <div class="col-lg-5">
       <div class="card">
-        <?php 
+        <?php
         ?>
         <div class="card-body">
           <p class="card-text">Don't have an account?</p>
           <h4 class="card-title text-center">Register</h4>
+          <?php
+          if (isset($registerErrorPassword)) {
+          ?>
+            <div class="alert alert-danger" role="alert">
+              Password doesn't match
+            </div>
+          <?php
+          }
+          ?>
+          <?php
+          if (isset($registerErrorUsername)) {
+          ?>
+            <div class="alert alert-danger" role="alert">
+              Username is already taken
+            </div>
+          <?php
+          }
+          ?>
           <form class="row" method="POST">
             <div class="form-group col-12">
               <label for="email">Email address</label>
