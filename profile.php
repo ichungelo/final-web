@@ -37,6 +37,9 @@ include("./handler.php");
         <li class="nav-item active">
           <a class="nav-link private-shadow-text" href="./profile.php">Profile <span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./search.php">Search</a>
+        </li>
       </ul>
       <a class="btn btn-outline-light my-2 my-sm-0 shadow-text" href="./logout.php">Logout</a>
     </div>
