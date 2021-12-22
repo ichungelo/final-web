@@ -99,5 +99,4 @@ if (isset($_GET['username'])) {
   $userId = $userData['user_id'];
   $getPostByUsernameQuery = "SELECT * FROM posts WHERE user_id = '$userId' ORDER BY created_at DESC";
   $getPostByUsernameHandler = mysqli_query($connection, $getPostByUsernameQuery) or die(mysqli_error($connection));
-
 }

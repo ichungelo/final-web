@@ -53,14 +53,14 @@ include("./handler.php");
         <div class="card-body">
           <div class="text-center">
             <div class="row my-2">
-              <div class="col-md-4 my-2">
+              <div class="col-md-3 my-2">
                 <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">
               </div>
-              <div class="col-md-8 my-2">
-                <div class=""><?= $_SESSION['firstName'] ?></div>
-                <div class=""><?= $_SESSION['lastName'] ?></div>
-                <br>
+              <div class="col-md-6 my-2">
+                <div class=""><?= $_SESSION['firstName'] ?> <?= $_SESSION['lastName'] ?></div>
                 <div><?= $_SESSION['email'] ?></div>
+              </div>
+              <div class="col-md-3 my-2">
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ include("./handler.php");
             </div>
             <div class="col-md-4 text-center">
               <h6>Posts</h6>
-              <p><?= mysqli_num_rows($getPostByIdHandler)?></p>
+              <p><?= mysqli_num_rows($getPostByIdHandler) ?></p>
             </div>
           </div>
         </div>
@@ -96,26 +96,26 @@ include("./handler.php");
     </div>
   </div>
   <div class="container">
-  <div class="card-columns">
+    <div class="card-columns">
       <?php
       while ($post = mysqli_fetch_assoc($getPostByIdHandler)) {
       ?>
-      <div class="card mt-3">
-        <div class="card-body row">
-          <div class="col-4">
-          <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">
-          </div>
-          <div class="col-8">
-            <h5 class="card-title"><?= $_SESSION['username'] ?></h5>
-            <h6 class="card-subtitle text-secondary"><?= $post['created_at']?></h6>
-            <p class="card-text"><?= htmlspecialchars($post['post']) ?></p>
+        <div class="card mt-3">
+          <div class="card-body row">
+            <div class="col-4">
+              <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">
+            </div>
+            <div class="col-8">
+              <h5 class="card-title"><?= $_SESSION['username'] ?></h5>
+              <h6 class="card-subtitle text-secondary"><?= $post['created_at'] ?></h6>
+              <p class="card-text"><?= htmlspecialchars($post['post']) ?></p>
+            </div>
           </div>
         </div>
-      </div>
       <?php
-      }  
+      }
       ?>
-      </div>
+    </div>
   </div>
   <!-- Optional JavaScript; choose one of the two! -->
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
