@@ -1,5 +1,5 @@
 <?php
-// include("./config.php")
+include('./handler.php')
 
 ?>
 <!doctype html>
@@ -57,7 +57,8 @@
     <!-- REGISTER -->
     <div class="col-lg-5">
       <div class="card">
-        <img class="card-img-top" src="holder.js/100x180/" alt="">
+        <?php 
+        ?>
         <div class="card-body">
           <p class="card-text">Don't have an account?</p>
           <h4 class="card-title text-center">Register</h4>
@@ -77,15 +78,15 @@
             </div>
             <div class="form-group col-12">
               <label for="username">Username</label>
-              <input type="text" class="form-control form-control-sm" name="username">
+              <input type="text" class="form-control form-control-sm" name="username" minlength="8">
             </div>
             <div class="form-group col-md-6">
               <label for="password">Password</label>
-              <input type="password" class="form-control form-control-sm" name="password">
+              <input type="password" class="form-control form-control-sm" name="password" minlength="8">
             </div>
             <div class="form-group col-md-6">
               <label for="password2">Confirm Password</label>
-              <input type="password" class="form-control form-control-sm" name="password2">
+              <input type="password" class="form-control form-control-sm" name="password2" minlength="8">
             </div>
             <button type="submit" class="btn btn-primary mx-3 btn-block" name="register">Sign Up</button>
           </form>
