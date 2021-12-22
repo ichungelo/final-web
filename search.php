@@ -70,6 +70,7 @@ include("./handler.php");
               <div class="col-8">
                 <h5 class="card-title"><?= $result['username'] ?></h5>
                 <p class="card-text"><?= $result['first_name']?> <?= $result['last_name']?></p>
+                <a href="users.php?username=<?= $result['username']?>" class="btn btn-success btn-sm btn-block" rows="4">View profile</a>
               </div>
             </div>
           </div>
