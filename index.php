@@ -48,12 +48,14 @@
   <!-- HOMEPAGE -->
   <div class="container-fluid my-3 row">
     <!-- HOMETEXT -->
-    <div class="col-lg-8">
+    <div class="col-lg-7">
       <p>Welcome To</p>
       <h1>Knotext</h1>
+      <p>Knotext is an simple textbased social media, inspired by twitter but much simpler. build for final project in mini bootcamp with studybox. </p>
+      <img class="private-style-homeimage mx-auto d-block" src="./assets/images/601.png" alt="">
     </div>
     <!-- REGISTER -->
-    <div class="col-lg-4">
+    <div class="col-lg-5">
       <div class="card">
         <img class="card-img-top" src="holder.js/100x180/" alt="">
         <div class="card-body">
@@ -62,26 +64,30 @@
           <form class="row" method="POST">
             <div class="form-group col-12">
               <label for="email">Email address</label>
-              <input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp">
+              <input type="email" class="form-control form-control-sm" name="email" aria-describedby="emailHelp">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group col-md-6">
               <label for="first-name">First name</label>
-              <input type="text" class="form-control form-control-sm" id="first-name">
+              <input type="text" class="form-control form-control-sm" name="first-name">
             </div>
             <div class="form-group col-md-6">
               <label for="last-name">Last name</label>
-              <input type="text" class="form-control form-control-sm" id="last-name">
+              <input type="text" class="form-control form-control-sm" name="last-name">
             </div>
             <div class="form-group col-12">
               <label for="username">Username</label>
-              <input type="text" class="form-control form-control-sm" id="username">
+              <input type="text" class="form-control form-control-sm" name="username">
             </div>
-            <div class="form-group col-12">
+            <div class="form-group col-md-6">
               <label for="password">Password</label>
-              <input type="password" class="form-control form-control-sm" id="password">
+              <input type="password" class="form-control form-control-sm" name="password">
             </div>
-            <button type="submit" class="btn btn-primary mx-3 btn-block">Submit</button>
+            <div class="form-group col-md-6">
+              <label for="password2">Confirm Password</label>
+              <input type="password" class="form-control form-control-sm" name="password2">
+            </div>
+            <button type="submit" class="btn btn-primary mx-3 btn-block" name="register">Sign Up</button>
           </form>
         </div>
       </div>
