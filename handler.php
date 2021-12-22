@@ -75,6 +75,14 @@ if (isset($_POST['send'])) {
   $postContentHandler = mysqli_query($connection, $postContentQuery) or die(mysqli_error($connection));
 }
 
+// GET SEARCHED USER DATA
+if (isset($_POST['search'])) {
+  $searchStatus = true;
+  $searchText = $_POST['searchText'];
+  $getSearchedUserDataQuery = "SELECT * FROM users WHERE ( username LIKE '%$searchText%' OR first_name LIKE '%$searchText%' OR last_name LIKE '%$searchText%')";
+  $getSearchedUserDataHandler = mysqli_query($connection, $getSearchedUserDataQuery)or die(mysqli_error($connection));
+}
+
 // GET ALL POST BY ID
 if (isset($_SESSION['loggedIn'])) {
   $userId = $_SESSION['userId'];

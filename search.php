@@ -49,7 +49,7 @@ include("./handler.php");
     <br><br><br>
     <form class="row" action="" method="POST">
       <div class="form-group col-md-10">
-        <input type="text" class="form-control" name="searchText" placeholder="Enter username">
+        <input type="text" class="form-control" name="searchText" placeholder="Enter username or name">
       </div>
       <div class="form-group col-md-2">
         <button type="submit" class="btn btn-warning btn-block" name="search">Search</button>
@@ -57,10 +57,26 @@ include("./handler.php");
     </form>
   </div>
   <div class="container">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Search Result</h4>
-      </div>
+    <div class="card-columns">
+      <?php
+      if (isset($searchStatus)) {
+        while ($result = mysqli_fetch_assoc($getSearchedUserDataHandler)) {
+      ?>
+          <div class="card mt-3">
+            <div class="card-body row">
+              <div class="col-4">
+                <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $result['first_name'] ?>-<?= $result['last_name'] ?>.svg" alt="">
+              </div>
+              <div class="col-8">
+                <h5 class="card-title"><?= $result['username'] ?></h5>
+                <p class="card-text"><?= $result['first_name']?> <?= $result['last_name']?></p>
+              </div>
+            </div>
+          </div>
+      <?php
+        }
+      }
+      ?>
     </div>
   </div>
   <!-- Optional JavaScript; choose one of the two! -->
