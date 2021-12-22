@@ -84,11 +84,11 @@ include("./handler.php");
         <div class="row my-2">
           <div class="col-md-4 text-center">
             <h6>followers</h6>
-            <p>12</p>
+            <p><?= mysqli_num_rows($getFollowersByUsernameHandler)?></p>
           </div>
           <div class="col-md-4 text-center">
             <h6>following</h6>
-            <p>15</p>
+            <p><?= mysqli_num_rows($getFollowingByUsernameHandler)?></p>
           </div>
           <div class="col-md-4 text-center">
             <h6>Posts</h6>

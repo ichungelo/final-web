@@ -99,13 +99,17 @@ if (isset($_GET['username'])) {
   $userId = $userData['user_id'];
   $getPostByUsernameQuery = "SELECT * FROM posts WHERE user_id = '$userId' ORDER BY created_at DESC";
   $getPostByUsernameHandler = mysqli_query($connection, $getPostByUsernameQuery) or die(mysqli_error($connection));
+  $getFollowingByUsernameQuery = "SELECT * FROM follows WHERE user_id = '$userId'";
+  $getFollowingByUsernameHandler = mysqli_query($connection, $getFollowingByUsernameQuery) or die(mysqli_error($connection));
+  $getFollowersByUsernameQuery = "SELECT * FROM follows WHERE follow_user_id = '$userId'";
+  $getFollowersByUsernameHandler = mysqli_query($connection, $getFollowersByUsernameQuery) or die(mysqli_error($connection));
 }
 
 // GET FOLLOWING
 if (isset($_SESSION['loggedIn'])) {
   $userId = $_SESSION['userId'];
-  $getfollowingByIdQuery = "SELECT * FROM follows WHERE user_id = '$userId'";
-  $getFollowingByIdHandler = mysqli_query($connection, $getfollowingByIdQuery) or die(mysqli_error($connection));
+  $getFollowingByIdQuery = "SELECT * FROM follows WHERE user_id = '$userId'";
+  $getFollowingByIdHandler = mysqli_query($connection, $getFollowingByIdQuery) or die(mysqli_error($connection));
 }
 
 // GET FOLLOWERS
