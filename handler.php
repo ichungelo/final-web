@@ -46,9 +46,14 @@ if (isset($_POST['login'])) {
   if (mysqli_num_rows($usernameCheckHandler) === 1) {
     $result = mysqli_fetch_assoc($usernameCheckHandler);
     if (password_verify($password, $result['password'])) {
+      $usernameCheckQuery = "SELECT * FROM users WHERE username = '$username'";
+      $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery);    
       $user = mysqli_fetch_assoc($usernameCheckHandler);
       $_SESSION['userId'] = $user['user_id'];
+      $_SESSION['email'] = $user['email'];
       $_SESSION['username'] = $user['username'];
+      $_SESSION['firstName'] = $user['first_name'];
+      $_SESSION['lastName'] = $user['last_name'];
       $_SESSION['loggedIn'] = true;
 
       header('Location: feeds.php');
