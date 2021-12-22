@@ -89,3 +89,15 @@ if (isset($_SESSION['loggedIn'])) {
   $getPostByIdQuery = "SELECT * FROM posts WHERE user_id = '$userId' ORDER BY created_at DESC";
   $getPostByIdHandler = mysqli_query($connection, $getPostByIdQuery) or die(mysqli_error($connection));
 }
+
+// GET USER BY USERNAME
+if (isset($_GET['username'])) {
+  $username = $_GET['username'];
+  $getUserByUsernameQuery = "SELECT * FROM users WHERE username = '$username'";
+  $getUserByUsernameHandler = mysqli_query($connection, $getUserByUsernameQuery)or die(mysqli_error($connection));
+  $userData = mysqli_fetch_assoc($getUserByUsernameHandler);
+  $userId = $userData['user_id'];
+  $getPostByUsernameQuery = "SELECT * FROM posts WHERE user_id = '$userId' ORDER BY created_at DESC";
+  $getPostByUsernameHandler = mysqli_query($connection, $getPostByUsernameQuery) or die(mysqli_error($connection));
+
+}
