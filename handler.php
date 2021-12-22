@@ -47,7 +47,7 @@ if (isset($_POST['login'])) {
     $result = mysqli_fetch_assoc($usernameCheckHandler);
     if (password_verify($password, $result['password'])) {
       $usernameCheckQuery = "SELECT * FROM users WHERE username = '$username'";
-      $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery);    
+      $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery);
       $user = mysqli_fetch_assoc($usernameCheckHandler);
       $_SESSION['userId'] = $user['user_id'];
       $_SESSION['email'] = $user['email'];
@@ -64,5 +64,20 @@ if (isset($_POST['login'])) {
   } else {
     $loginErrorUsername = true;
   }
+}
 
+// POST BY ID
+if (isset($_POST['send'])) {
+  $content = $_POST['content'];
+  $userId = $_SESSION['userId'];
+
+  $postContentQuery = "INSERT INTO posts (user_id, post) VALUES ('$userId', '$content')";
+  $postContentHandler = mysqli_query($connection, $postContentQuery) or die(mysqli_error($connection));
+}
+
+// GET ALL POST BY ID
+if (isset($_SESSION['loggedIn'])) {
+  $userId = $_SESSION['userId'];
+  $getPostByIdQuery = "SELECT * FROM posts WHERE user_id = '$userId' ORDER BY created_at DESC";
+  $getPostByIdHandler = mysqli_query($connection, $getPostByIdQuery) or die(mysqli_error($connection));
 }

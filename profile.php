@@ -68,11 +68,11 @@ include("./handler.php");
             </div>
             <div class="col-md-4 text-center">
               <h6>following</h6>
-              <p>12</p>
+              <p>15</p>
             </div>
             <div class="col-md-4 text-center">
               <h6>Posts</h6>
-              <p>12</p>
+              <p><?= mysqli_num_rows($getPostByIdHandler)?></p>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@ include("./handler.php");
           <form method="POST">
             <div class="form-row">
               <div class="behind-nav form-group col-12">
-                <textarea class="form-control" name="body" rows="6"></textarea>
+                <textarea class="form-control form-control-sm" name="content" rows="6" minlength="10" maxlength="255"></textarea>
               </div>
               <button type="submit" class="btn btn-warning ml-auto btn-block" name="send">POST</button>
             </div>
@@ -91,8 +91,28 @@ include("./handler.php");
         </div>
       </div>
     </div>
-
-
+  </div>
+  <div class="container">
+  <div class="card-columns">
+      <?php
+      while ($post = mysqli_fetch_assoc($getPostByIdHandler)) {
+      ?>
+      <div class="card mt-3">
+        <div class="card-body row">
+          <div class="col-4">
+          <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">
+          </div>
+          <div class="col-8">
+            <h5 class="card-title"><?= $_SESSION['username'] ?></h5>
+            <h6 class="card-subtitle text-secondary"><?= $post['created_at']?></h6>
+            <p class="card-text"><?= htmlspecialchars($post['post']) ?></p>
+          </div>
+        </div>
+      </div>
+      <?php
+      }  
+      ?>
+      </div>
   </div>
   <!-- Optional JavaScript; choose one of the two! -->
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
