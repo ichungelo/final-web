@@ -44,6 +44,30 @@ include("./handler.php");
       <a class="btn btn-outline-light my-2 my-sm-0 shadow-text" href="./logout.php">Logout</a>
     </div>
   </nav>
+  <!-- FEEDS -->
+  <br><br><br>
+  <div class="container">
+    <div class="card-columns">
+      <?php
+      while ($feed = mysqli_fetch_assoc($getAllFeedPostHandler)) {
+      ?>
+        <div class="card mt-3">
+          <div class="card-body row">
+            <div class="col-4">
+              <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $feed['first_name'] ?>-<?= $feed['last_name'] ?>.svg" alt="">
+            </div>
+            <div class="col-8">
+              <h5 class="card-title"><?= $feed['username'] ?></h5>
+              <h6 class="card-subtitle text-secondary"><?= $feed['created_at'] ?></h6>
+              <p class="card-text"><?= htmlspecialchars($feed['post']) ?></p>
+            </div>
+          </div>
+        </div>
+      <?php
+      }
+      ?>
+    </div>
+  </div>
   <!-- Optional JavaScript; choose one of the two! -->
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
