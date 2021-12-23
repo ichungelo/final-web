@@ -45,10 +45,10 @@ include("./handler.php");
     </div>
   </nav>
   <!-- PROFILE -->
-  <div class="container">
-    <br><br><br>
-    <div class="row">
-      <div class="card col-lg-6">
+  <br><br><br>
+  <div class="container d-flex justify-content-center">
+    <div class="col-lg-8">
+      <div class="card mt-3">
         <h4 class="card-title text-center my-2"><?= $_SESSION['username'] ?></h4>
         <div class="card-body">
           <div class="text-center">
@@ -72,10 +72,10 @@ include("./handler.php");
               </a>
             </div>
             <div class="col-md-4 text-center">
-            <a href="following.php?id=<?= $_SESSION['userId'] ?>" class="text-dark">
-              <h6>following</h6>
-              <p><?= mysqli_num_rows($getFollowingByIdHandler) ?></p>
-</a>
+              <a href="following.php?id=<?= $_SESSION['userId'] ?>" class="text-dark">
+                <h6>following</h6>
+                <p><?= mysqli_num_rows($getFollowingByIdHandler) ?></p>
+              </a>
             </div>
             <div class="col-md-4 text-center">
               <h6>Posts</h6>
@@ -84,7 +84,7 @@ include("./handler.php");
           </div>
         </div>
       </div>
-      <div class="card col-lg-6">
+      <div class="card mt-3">
         <h4 class="card-title text-center my-2">Create new post</h4>
         <div class="card-body">
           <form method="POST">
@@ -97,16 +97,12 @@ include("./handler.php");
           </form>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="card-columns">
       <?php
       while ($post = mysqli_fetch_assoc($getPostByIdHandler)) {
       ?>
         <div class="card mt-3">
           <div class="card-body row">
-            <div class="col-4">
+            <div class="col-4 text-right">
               <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">
             </div>
             <div class="col-8">
