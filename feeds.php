@@ -46,15 +46,15 @@ include("./handler.php");
   </nav>
   <!-- FEEDS -->
   <br><br><br>
-  <div class="container">
-    <div class="card-columns">
+  <div class="container d-flex justify-content-center">
+    <div class="col-lg-8">
       <?php
       while ($feed = mysqli_fetch_assoc($getAllFeedPostHandler)) {
       ?>
         <a class="text-dark" href="users.php?username=<?= $feed['username'] ?>">
           <div class="card mt-3">
             <div class="card-body row">
-              <div class="col-4">
+              <div class="col-4 text-right">
                 <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $feed['first_name'] ?>-<?= $feed['last_name'] ?>.svg" alt="">
               </div>
               <div class="col-8">

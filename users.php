@@ -45,68 +45,66 @@ include("./handler.php");
     </div>
   </nav>
   <!-- PROFILE -->
-  <div class="container">
     <br><br><br>
-    <div class="card">
-      <h4 class="card-title text-center my-2"><?= $userData['username'] ?></h4>
-      <div class="card-body">
-        <div class="text-center">
+  <div class="container d-flex justify-content-center">
+    <div class="col-lg-8">
+      <div class="card mt-3">
+        <h4 class="card-title text-center my-2"><?= $userData['username'] ?></h4>
+        <div class="card-body">
+          <div class="text-center">
+            <div class="row my-2">
+              <div class="col-md-3 my-2">
+                <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $userData['first_name'] ?>-<?= $userData['last_name'] ?>.svg" alt="">
+              </div>
+              <div class="col-md-6 my-2">
+                <div class=""><?= $userData['first_name'] ?> <?= $userData['last_name'] ?></div>
+                <div><?= $userData['email'] ?></div>
+              </div>
+              <div class="col-md-3 my-2">
+                <?php
+                if ($_SESSION['userId'] === $userData['user_id']) {
+                  echo "";
+                } else {
+                  $idUser = $_SESSION['userId'];
+                  $idFollow = $userData['user_id'];
+                  $checkFollowQuery = "SELECT * FROM `follows` WHERE user_id = '$idUser' AND follow_user_id = '$idFollow'";
+                  $checkFollowHandler = mysqli_query($connection, $checkFollowQuery) or die(mysqli_error($connection));
+                ?>
+                  <a href="follow.php?id=<?= $userData['user_id'] ?>" class="btn <?= mysqli_num_rows($checkFollowHandler) > 0 ? "btn-danger" : "btn-success" ?> btn-sm btn-block" rows="4">
+                    <?= mysqli_num_rows($checkFollowHandler) > 0 ? "Unfollow" : "Follow" ?>
+                  </a>
+                <?php
+                }
+                ?>
+              </div>
+            </div>
+          </div>
           <div class="row my-2">
-            <div class="col-md-3 my-2">
-              <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $userData['first_name'] ?>-<?= $userData['last_name'] ?>.svg" alt="">
+            <div class="col-md-4 text-center">
+              <a href="followers.php?id=<?= $userData['user_id'] ?>" class="text-dark">
+                <h6>followers</h6>
+                <p><?= mysqli_num_rows($getFollowersByUsernameHandler) ?></p>
+              </a>
             </div>
-            <div class="col-md-6 my-2">
-              <div class=""><?= $userData['first_name'] ?> <?= $userData['last_name'] ?></div>
-              <div><?= $userData['email'] ?></div>
+            <div class="col-md-4 text-center">
+              <a href="following.php?id=<?= $userData['user_id'] ?>" class="text-dark">
+                <h6>following</h6>
+                <p><?= mysqli_num_rows($getFollowingByUsernameHandler) ?></p>
+              </a>
             </div>
-            <div class="col-md-3 my-2">
-              <?php
-              if ($_SESSION['userId'] === $userData['user_id']) {
-                echo "";
-              } else {
-                $idUser = $_SESSION['userId'];
-                $idFollow = $userData['user_id'];
-                $checkFollowQuery = "SELECT * FROM `follows` WHERE user_id = '$idUser' AND follow_user_id = '$idFollow'";
-                $checkFollowHandler = mysqli_query($connection, $checkFollowQuery) or die(mysqli_error($connection));
-              ?>
-                <a href="follow.php?id=<?= $userData['user_id'] ?>" class="btn <?= mysqli_num_rows($checkFollowHandler) > 0 ? "btn-danger" : "btn-success" ?> btn-sm btn-block" rows="4">
-                  <?= mysqli_num_rows($checkFollowHandler) > 0 ? "Unfollow" : "Follow" ?>
-                </a>
-              <?php
-              }
-              ?>
+            <div class="col-md-4 text-center">
+              <h6>Posts</h6>
+              <p><?= mysqli_num_rows($getPostByUsernameHandler) ?></p>
             </div>
-          </div>
-        </div>
-        <div class="row my-2">
-          <div class="col-md-4 text-center">
-            <a href="followers.php?id=<?= $userData['user_id'] ?>" class="text-dark">
-              <h6>followers</h6>
-              <p><?= mysqli_num_rows($getFollowersByUsernameHandler) ?></p>
-            </a>
-          </div>
-          <div class="col-md-4 text-center">
-            <a href="following.php?id=<?= $userData['user_id'] ?>" class="text-dark">
-              <h6>following</h6>
-              <p><?= mysqli_num_rows($getFollowingByUsernameHandler) ?></p>
-            </a>
-          </div>
-          <div class="col-md-4 text-center">
-            <h6>Posts</h6>
-            <p><?= mysqli_num_rows($getPostByUsernameHandler) ?></p>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="card-columns">
       <?php
       while ($post = mysqli_fetch_assoc($getPostByUsernameHandler)) {
       ?>
         <div class="card mt-3">
           <div class="card-body row">
-            <div class="col-4">
+            <div class="col-4 text-right">
               <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $userData['first_name'] ?>-<?= $userData['last_name'] ?>.svg" alt="">
             </div>
             <div class="col-8">
