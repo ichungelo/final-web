@@ -61,34 +61,31 @@ include("./handler.php");
             </div>
             <div class="col-md-3 my-2">
               <?php
-                if ($_SESSION['userId'] === $userData['user_id']) {
-                  echo " "; } else {
-              ?>
-              <a href="follow.php?id=<?= $userData['user_id']?>" class="btn btn-success btn-sm btn-block" rows="4">
-              <?php
+              if ($_SESSION['userId'] === $userData['user_id']) {
+                echo "";
+              } else {
                 $idUser = $_SESSION['userId'];
                 $idFollow = $userData['user_id'];
                 $checkFollowQuery = "SELECT * FROM `follows` WHERE user_id = '$idUser' AND follow_user_id = '$idFollow'";
-                $checkFollowHandler = mysqli_query($connection, $checkFollowQuery)or die(mysqli_error($connection));
-                if (mysqli_num_rows($checkFollowHandler) > 0) {
-                  echo "Unfollow";
-                } else {
-                  echo "Follow";
-                }
+                $checkFollowHandler = mysqli_query($connection, $checkFollowQuery) or die(mysqli_error($connection));
+              ?>
+                <a href="follow.php?id=<?= $userData['user_id'] ?>" class="btn <?= mysqli_num_rows($checkFollowHandler) > 0 ? "btn-danger" : "btn-success" ?> btn-sm btn-block" rows="4">
+                  <?= mysqli_num_rows($checkFollowHandler) > 0 ? "Unfollow" : "Follow" ?>
+                </a>
+              <?php
               }
               ?>
-            </a>
             </div>
           </div>
         </div>
         <div class="row my-2">
           <div class="col-md-4 text-center">
             <h6>followers</h6>
-            <p><?= mysqli_num_rows($getFollowersByUsernameHandler)?></p>
+            <p><?= mysqli_num_rows($getFollowersByUsernameHandler) ?></p>
           </div>
           <div class="col-md-4 text-center">
             <h6>following</h6>
-            <p><?= mysqli_num_rows($getFollowingByUsernameHandler)?></p>
+            <p><?= mysqli_num_rows($getFollowingByUsernameHandler) ?></p>
           </div>
           <div class="col-md-4 text-center">
             <h6>Posts</h6>
