@@ -17,14 +17,14 @@ include("./handler.php");
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="/assets/images/ichun.png">
-  <title>Knotext | <?= $_SESSION['username']?></title>
+  <title>Knotext | <?= $_SESSION['username'] ?></title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark private-style-navbar fixed-top">
     <a class="navbar-brand " href="./index.php">
-      <?= $_SESSION['username']?>
+      <?= $_SESSION['username'] ?>
     </a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -51,19 +51,20 @@ include("./handler.php");
       <?php
       while ($feed = mysqli_fetch_assoc($getAllFeedPostHandler)) {
       ?>
-        <div class="card mt-3">
-          <div class="card-body row">
-            <div class="col-4">
-              <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $feed['first_name'] ?>-<?= $feed['last_name'] ?>.svg" alt="">
-            </div>
-            <div class="col-8">
-              <h5 class="card-title"><?= $feed['username'] ?></h5>
-              <h6 class="card-subtitle text-secondary"><?= $feed['created_at'] ?></h6>
-              <p class="card-text"><?= htmlspecialchars($feed['post']) ?></p>
-              <a href="users.php?username=<?= $feed['username']?>" class="btn btn-warning btn-sm btn-block" rows="4">View profile</a>
+        <a class="text-dark" href="users.php?username=<?= $feed['username'] ?>">
+          <div class="card mt-3">
+            <div class="card-body row">
+              <div class="col-4">
+                <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $feed['first_name'] ?>-<?= $feed['last_name'] ?>.svg" alt="">
+              </div>
+              <div class="col-8">
+                <h5 class="card-title"><?= $feed['username'] ?></h5>
+                <h6 class="card-subtitle text-secondary"><?= $feed['created_at'] ?></h6>
+                <p class="card-text"><?= htmlspecialchars($feed['post']) ?></p>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       <?php
       }
       ?>

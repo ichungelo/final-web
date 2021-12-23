@@ -62,18 +62,19 @@ include("./handler.php");
       if (isset($searchStatus)) {
         while ($result = mysqli_fetch_assoc($getSearchedUserDataHandler)) {
       ?>
-          <div class="card mt-3">
-            <div class="card-body row">
-              <div class="col-4">
-                <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $result['first_name'] ?>-<?= $result['last_name'] ?>.svg" alt="">
-              </div>
-              <div class="col-8">
-                <h5 class="card-title"><?= $result['username'] ?></h5>
-                <p class="card-text"><?= $result['first_name']?> <?= $result['last_name']?></p>
-                <a href="users.php?username=<?= $result['username']?>" class="btn btn-warning btn-sm btn-block" rows="4">View profile</a>
+          <a href="users.php?username=<?= $result['username'] ?>" class="text-dark">
+            <div class="card mt-3">
+              <div class="card-body row">
+                <div class="col-4">
+                  <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $result['first_name'] ?>-<?= $result['last_name'] ?>.svg" alt="">
+                </div>
+                <div class="col-8">
+                  <h5 class="card-title"><?= $result['username'] ?></h5>
+                  <p class="card-text"><?= $result['first_name'] ?> <?= $result['last_name'] ?></p>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
       <?php
         }
       }
