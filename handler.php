@@ -122,6 +122,6 @@ if (isset($_SESSION['loggedIn'])) {
 // GET FEED POST
 if (isset($_SESSION['loggedIn'])) {
   $userId = $_SESSION['userId'];
-  $getAllFeedPostQuery = "SELECT posts.post_id, posts.post, posts.created_at, posts.user_id, users.first_name, users.last_name, users.username FROM posts JOIN follows ON posts.user_id = follows.follow_user_id JOIN users ON posts.user_id = users.user_id WHERE follows.user_id = '$userId' OR posts.user_id = '$userId'";
+  $getAllFeedPostQuery = "SELECT posts.post_id, posts.post, posts.created_at, posts.user_id, users.first_name, users.last_name, users.username FROM posts JOIN follows ON posts.user_id = follows.follow_user_id JOIN users ON posts.user_id = users.user_id WHERE follows.user_id = '$userId' OR posts.user_id = '$userId' ORDER BY created_at DESC";
   $getAllFeedPostHandler = mysqli_query($connection, $getAllFeedPostQuery)or die(mysqli_error($connection));
 }
