@@ -44,7 +44,7 @@ include("./handler.php");
       <a class="btn btn-outline-light my-2 my-sm-0 shadow-text" href="./logout.php">Logout</a>
     </div>
   </nav>
-  <!-- PROFILE -->
+  <!-- FOLLOWING LIST -->
   <br><br><br>
   <div class="container">
     <h1>Following List</h1>

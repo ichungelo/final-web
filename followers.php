@@ -44,17 +44,10 @@ include("./handler.php");
       <a class="btn btn-outline-light my-2 my-sm-0 shadow-text" href="./logout.php">Logout</a>
     </div>
   </nav>
-  <!-- PROFILE -->
+  <!-- FOLLOWERS LIST -->
+  <br><br><br>
   <div class="container">
-    <br><br><br>
-    <form class="row" action="" method="POST">
-      <div class="form-group col-md-10">
-        <input type="text" class="form-control" name="searchText" placeholder="Enter username or name" required>
-      </div>
-      <div class="form-group col-md-2">
-        <button type="submit" class="btn btn-warning btn-block" name="search">Search</button>
-      </div>
-    </form>
+    <h1>Followers List</h1>
   </div>
   <div class="container">
     <div class="card-columns">
