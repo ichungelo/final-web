@@ -41,8 +41,8 @@ include('./handler.php');
       </ul>
       <div>
         <form class="form-inline my-2 my-lg-0 mr-0 col-12 justify-content-sm-center" method="POST">
-          <input class="form-control my-1 mr-sm-2" type="text" name="loginUsername" placeholder="Username">
-          <input class="form-control my-1 mr-sm-2" type="password" name="loginPassword" placeholder="Password">
+          <input class="form-control my-1 mr-sm-2" type="text" name="loginUsername" placeholder="Username" required>
+          <input class="form-control my-1 mr-sm-2" type="password" name="loginPassword" placeholder="Password" required>
           <button class="btn btn-outline-light my-2 my-sm-0 shadow-text" name="login">Login</button>
         </form>
       </div>
@@ -113,23 +113,23 @@ include('./handler.php');
               </div>
               <div class="form-group col-md-6">
                 <label for="first-name">First name</label>
-                <input type="text" class="form-control form-control-sm" name="first-name">
+                <input type="text" class="form-control form-control-sm" name="first-name" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="last-name">Last name</label>
-                <input type="text" class="form-control form-control-sm" name="last-name">
+                <input type="text" class="form-control form-control-sm" name="last-name" required>
               </div>
               <div class="form-group col-12">
                 <label for="username">Username</label>
-                <input type="text" class="form-control form-control-sm" name="username" minlength="8">
+                <input type="text" class="form-control form-control-sm" name="username" minlength="8" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="password">Password</label>
-                <input type="password" class="form-control form-control-sm" name="password" minlength="8">
+                <input type="password" class="form-control form-control-sm" name="password" minlength="8" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="password2">Confirm Password</label>
-                <input type="password" class="form-control form-control-sm" name="password2" minlength="8">
+                <input type="password" class="form-control form-control-sm" name="password2" minlength="8" required>
               </div>
               <button type="submit" class="btn btn-warning mx-3 btn-block" name="register">Sign Up</button>
             </form>

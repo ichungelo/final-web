@@ -49,7 +49,7 @@ include("./handler.php");
     <br><br><br>
     <form class="row" action="" method="POST">
       <div class="form-group col-md-10">
-        <input type="text" class="form-control" name="searchText" placeholder="Enter username or name">
+        <input type="text" class="form-control" name="searchText" placeholder="Enter username or name" required>
       </div>
       <div class="form-group col-md-2">
         <button type="submit" class="btn btn-warning btn-block" name="search">Search</button>
@@ -70,7 +70,7 @@ include("./handler.php");
               <div class="col-8">
                 <h5 class="card-title"><?= $result['username'] ?></h5>
                 <p class="card-text"><?= $result['first_name']?> <?= $result['last_name']?></p>
-                <a href="users.php?username=<?= $result['username']?>" class="btn btn-success btn-sm btn-block" rows="4">View profile</a>
+                <a href="users.php?username=<?= $result['username']?>" class="btn btn-warning btn-sm btn-block" rows="4">View profile</a>
               </div>
             </div>
           </div>

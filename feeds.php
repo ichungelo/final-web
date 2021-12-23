@@ -60,6 +60,7 @@ include("./handler.php");
               <h5 class="card-title"><?= $feed['username'] ?></h5>
               <h6 class="card-subtitle text-secondary"><?= $feed['created_at'] ?></h6>
               <p class="card-text"><?= htmlspecialchars($feed['post']) ?></p>
+              <a href="users.php?username=<?= $feed['username']?>" class="btn btn-warning btn-sm btn-block" rows="4">View profile</a>
             </div>
           </div>
         </div>

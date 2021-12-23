@@ -86,7 +86,7 @@ include("./handler.php");
           <form method="POST">
             <div class="form-row">
               <div class="behind-nav form-group col-12">
-                <textarea class="form-control form-control-sm" name="content" rows="6" minlength="10" maxlength="255"></textarea>
+                <textarea class="form-control form-control-sm" name="content" rows="6" maxlength="255"  required></textarea>
               </div>
               <button type="submit" class="btn btn-warning ml-auto btn-block" name="send">POST</button>
             </div>
