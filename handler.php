@@ -105,18 +105,32 @@ if (isset($_GET['username'])) {
   $getFollowersByUsernameHandler = mysqli_query($connection, $getFollowersByUsernameQuery) or die(mysqli_error($connection));
 }
 
-// GET FOLLOWING
+// GET FOLLOWING NUMBER
 if (isset($_SESSION['loggedIn'])) {
   $userId = $_SESSION['userId'];
   $getFollowingByIdQuery = "SELECT * FROM follows WHERE user_id = '$userId'";
   $getFollowingByIdHandler = mysqli_query($connection, $getFollowingByIdQuery) or die(mysqli_error($connection));
 }
 
-// GET FOLLOWERS
+//GET FOLLOWING USERS LIST
+if (isset($_GET['id'])) {
+  $userId = $_GET['id'];
+  $getFollowingUserQuery = "SELECT users.user_id, users.first_name, users.last_name, users.username FROM follows JOIN users ON follows.follow_user_id = users.user_id WHERE follows.user_id = '$userId'";
+  $getFollowingUserHandler = mysqli_query($connection, $getFollowingUserQuery) or die(mysqli_error($connection));
+}
+
+// GET FOLLOWERS NUMBERS
 if (isset($_SESSION['loggedIn'])) {
   $userId = $_SESSION['userId'];
   $getFollowersByIdQuery = "SELECT * FROM follows WHERE follow_user_id = '$userId'";
   $getFollowersByIdHandler = mysqli_query($connection, $getFollowersByIdQuery) or die(mysqli_error($connection));
+}
+
+//GET FOLLOWERS USERS LIST
+if (isset($_GET['id'])) {
+  $userId = $_GET['id'];
+  $getFollowersUserQuery = "SELECT users.user_id, users.first_name, users.last_name, users.username FROM follows JOIN users ON follows.user_id = users.user_id WHERE follows.follow_user_id = '$userId'";
+  $getFollowersUserHandler = mysqli_query($connection, $getFollowersUserQuery) or die(mysqli_error($connection));
 }
 
 // GET FEED POST
