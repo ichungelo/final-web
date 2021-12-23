@@ -53,14 +53,15 @@ include("./handler.php");
         <div class="card-body">
           <div class="text-center">
             <div class="row my-2">
-              <div class="col-md-3 my-2">
+              <div class="col-md-4 my-2">
                 <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $userData['first_name'] ?>-<?= $userData['last_name'] ?>.svg" alt="">
               </div>
-              <div class="col-md-6 my-2">
-                <div class=""><?= $userData['first_name'] ?> <?= $userData['last_name'] ?></div>
-                <div><?= $userData['email'] ?></div>
-              </div>
-              <div class="col-md-3 my-2">
+              <div class="col-md-8 my-2">
+                <div class="col-md-12">
+                  <div class=""><?= $userData['first_name'] ?> <?= $userData['last_name'] ?></div>
+                  <div><?= $userData['email'] ?></div>
+                </div>
+                <div class="col-md-12">
                 <?php
                 if ($_SESSION['userId'] === $userData['user_id']) {
                   echo "";
@@ -76,6 +77,7 @@ include("./handler.php");
                 <?php
                 }
                 ?>
+                </div>
               </div>
             </div>
           </div>
