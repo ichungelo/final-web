@@ -1,6 +1,46 @@
-.landingpage-background {
-  background-image: url(./6314.jpg);
-  background-position: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Righteous&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, button, a {
+  font-family: 'Righteous', cursive;
+}
+
+body {
+  background-image: url(./assets/images/background.svg);
   background-size: contain;
+  background-position: bottom;
   background-repeat: no-repeat;
+}
+
+.private-shadow-text {
+  text-shadow: 0 0 5px white;
+}
+
+.private-style-icon {
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+  border-radius: 20%;
+}
+
+.private-style-icon:hover {
+  background-color: aliceblue;
+  box-shadow: 3px 3px 5px black;
+}
+
+.private-style-navbar {
+  background-color: #005b97;
+  box-shadow:0 0 5px black;
+}
+
+.private-style-homeimage {
+  width: 50%;
+}
+
+.private-style-avatar {
+  width: 100px;
+  border-radius: 50%;
 }
