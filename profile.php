@@ -66,12 +66,16 @@ include("./handler.php");
           </div>
           <div class="row my-2">
             <div class="col-md-4 text-center">
-              <h6>followers</h6>
-              <p><?= mysqli_num_rows($getFollowersByIdHandler) ?></p>
+              <a href="followers.php?id=<?= $_SESSION['userId'] ?>" class="text-dark">
+                <h6>followers</h6>
+                <p><?= mysqli_num_rows($getFollowersByIdHandler) ?></p>
+              </a>
             </div>
             <div class="col-md-4 text-center">
+            <a href="following.php?id=<?= $_SESSION['userId'] ?>" class="text-dark">
               <h6>following</h6>
               <p><?= mysqli_num_rows($getFollowingByIdHandler) ?></p>
+</a>
             </div>
             <div class="col-md-4 text-center">
               <h6>Posts</h6>
@@ -106,7 +110,7 @@ include("./handler.php");
               <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">
             </div>
             <div class="col-8">
-              <a href="delete.php?postid=<?= $post['post_id']?>" class="close" aria-label="Close" onclick="return confirm('Are you sure you want to delete this post')">
+              <a href="delete.php?postid=<?= $post['post_id'] ?>" class="close" aria-label="Close" onclick="return confirm('Are you sure you want to delete this post')">
                 <span aria-hidden="true">&times;</span>
               </a>
               <h5 class="card-title"><?= $_SESSION['username'] ?></h5>

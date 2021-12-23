@@ -80,12 +80,16 @@ include("./handler.php");
         </div>
         <div class="row my-2">
           <div class="col-md-4 text-center">
-            <h6>followers</h6>
-            <p><?= mysqli_num_rows($getFollowersByUsernameHandler) ?></p>
+            <a href="followers.php?id=<?= $userData['user_id'] ?>" class="text-dark">
+              <h6>followers</h6>
+              <p><?= mysqli_num_rows($getFollowersByUsernameHandler) ?></p>
+            </a>
           </div>
           <div class="col-md-4 text-center">
-            <h6>following</h6>
-            <p><?= mysqli_num_rows($getFollowingByUsernameHandler) ?></p>
+            <a href="following.php?id=<?= $userData['user_id'] ?>" class="text-dark">
+              <h6>following</h6>
+              <p><?= mysqli_num_rows($getFollowingByUsernameHandler) ?></p>
+            </a>
           </div>
           <div class="col-md-4 text-center">
             <h6>Posts</h6>
