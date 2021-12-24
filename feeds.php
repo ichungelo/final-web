@@ -54,7 +54,7 @@ include("./handler.php");
         <a class="text-dark" href="users.php?username=<?= $feed['username'] ?>">
           <div class="card mt-3">
             <div class="card-body row">
-              <div class="col-4 text-right">
+              <div class="col-4 text-center">
                 <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $feed['first_name'] ?>-<?= $feed['last_name'] ?>.svg" alt="">
               </div>
               <div class="col-8">

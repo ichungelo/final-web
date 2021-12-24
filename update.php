@@ -49,73 +49,18 @@ include("./handler.php");
   <div class="container d-flex justify-content-center">
     <div class="col-lg-8">
       <div class="card mt-3">
-        <h4 class="card-title text-center my-2"><?= $_SESSION['username'] ?></h4>
-        <div class="card-body">
-          <div class="text-center">
-            <div class="row my-2">
-              <div class="col-md-4 my-2">
-                <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">
-              </div>
-              <div class="col-md-8 my-2">
-                <div class=""><?= $_SESSION['firstName'] ?> <?= $_SESSION['lastName'] ?></div>
-                <div><?= $_SESSION['email'] ?></div>
-              </div>
-            </div>
-          </div>
-          <div class="row my-2">
-            <div class="col-md-4 text-center">
-              <a href="followers.php?id=<?= $_SESSION['userId'] ?>" class="text-dark">
-                <h6>followers</h6>
-                <p><?= mysqli_num_rows($getFollowersByIdHandler) ?></p>
-              </a>
-            </div>
-            <div class="col-md-4 text-center">
-              <a href="following.php?id=<?= $_SESSION['userId'] ?>" class="text-dark">
-                <h6>following</h6>
-                <p><?= mysqli_num_rows($getFollowingByIdHandler) ?></p>
-              </a>
-            </div>
-            <div class="col-md-4 text-center">
-              <h6>Posts</h6>
-              <p><?= mysqli_num_rows($getPostByIdHandler) ?></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card mt-3">
-        <h4 class="card-title text-center my-2">Create new post</h4>
+        <h4 class="card-title text-center my-2">Update post</h4>
         <div class="card-body">
           <form method="POST">
             <div class="form-row">
               <div class="behind-nav form-group col-12">
                 <textarea class="form-control form-control-sm" name="content" rows="6" maxlength="255" required></textarea>
               </div>
-              <button type="submit" class="btn btn-warning ml-auto btn-block" name="send">POST</button>
+              <button type="submit" class="btn btn-warning ml-auto btn-block" name="send">UPDATE</button>
             </div>
           </form>
         </div>
       </div>
-      <?php
-      while ($post = mysqli_fetch_assoc($getPostByIdHandler)) {
-      ?>
-        <div class="card mt-3">
-          <div class="card-body row">
-            <div class="col-4 text-center">
-              <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">
-            </div>
-            <div class="col-8">
-              <a href="delete.php?postid=<?= $post['post_id'] ?>" class="close" aria-label="Close" onclick="return confirm('Are you sure you want to delete this post')">
-                <span aria-hidden="true">&times;</span>
-              </a>
-              <h5 class="card-title"><?= $_SESSION['username'] ?></h5>
-              <h6 class="card-subtitle text-secondary"><?= $post['created_at'] ?></h6>
-              <p class="card-text"><?= htmlspecialchars($post['post']) ?></p>
-            </div>
-          </div>
-        </div>
-      <?php
-      }
-      ?>
     </div>
   </div>
   <!-- Optional JavaScript; choose one of the two! -->
