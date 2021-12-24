@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
       echo "
         <script>
           alert('Unfollow Success')
-          window.location.href = 'profile.php';
+          window.location.href = 'users.php?id={$idFollow}';
         </script>";
     } else {
       echo "
@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
       echo "
         <script>
           alert('Follow Success')
-          window.location.href = 'profile.php';
+          window.location.href = 'users.php?id={$idFollow}';
         </script>";
     } else {
       echo "
