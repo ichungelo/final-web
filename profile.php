@@ -108,8 +108,16 @@ include("./handler.php");
                 <span aria-hidden="true">&times;</span>
               </a>
               <h5 class="card-title"><?= $_SESSION['username'] ?></h5>
-              <h6 class="card-subtitle text-secondary"><?= $post['created_at'] ?></h6>
+              <div class="badge badge-pill badge-secondary"><?= $post['created_at'] ?></div>
               <p class="card-text"><?= htmlspecialchars($post['post']) ?></p>
+              <?php if ($post['created_at'] !== $post['updated_at']) {?> 
+              <div class="text-right">
+                <span class="badge badge-pill badge-secondary">updated</span>
+              </div> 
+              <?php
+              }
+              ?>
+              <a href="update.php?postid=<?= $post['post_id'] ?>">Update Post</a>
             </div>
           </div>
         </div>

@@ -59,8 +59,15 @@ include("./handler.php");
               </div>
               <div class="col-8">
                 <h5 class="card-title"><?= $feed['username'] ?></h5>
-                <h6 class="card-subtitle text-secondary"><?= $feed['created_at'] ?></h6>
+                <div class="badge badge-pill badge-secondary"><?= $feed['created_at'] ?></div>
                 <p class="card-text"><?= htmlspecialchars($feed['post']) ?></p>
+                <?php if ($feed['created_at'] !== $feed['updated_at']) {?> 
+              <div class="text-right">
+                <span class="badge badge-pill badge-secondary">updated</span>
+              </div> 
+              <?php
+              }
+              ?>
               </div>
             </div>
           </div>

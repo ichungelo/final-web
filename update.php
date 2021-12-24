@@ -54,9 +54,9 @@ include("./handler.php");
           <form method="POST">
             <div class="form-row">
               <div class="behind-nav form-group col-12">
-                <textarea class="form-control form-control-sm" name="content" rows="6" maxlength="255" required></textarea>
+                <textarea class="form-control form-control-sm" name="post" rows="6" maxlength="255" required><?= isset($postId) === true ? $editPost['post'] : ""?></textarea>
               </div>
-              <button type="submit" class="btn btn-warning ml-auto btn-block" name="send">UPDATE</button>
+              <button type="submit" class="btn btn-warning ml-auto btn-block" name="postupdate">UPDATE</button>
             </div>
           </form>
         </div>

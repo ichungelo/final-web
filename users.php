@@ -111,8 +111,15 @@ include("./handler.php");
             </div>
             <div class="col-8">
               <h5 class="card-title"><?= $userData['username'] ?></h5>
-              <h6 class="card-subtitle text-secondary"><?= $post['created_at'] ?></h6>
+              <div class="badge badge-pill badge-secondary"><?= $post['created_at'] ?></div>
               <p class="card-text"><?= htmlspecialchars($post['post']) ?></p>
+              <?php if ($post['created_at'] !== $post['updated_at']) {?> 
+              <div class="text-right">
+                <span class="badge badge-pill badge-secondary">updated</span>
+              </div> 
+              <?php
+              }
+              ?>
             </div>
           </div>
         </div>
