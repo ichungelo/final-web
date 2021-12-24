@@ -83,11 +83,24 @@ if (isset($_POST['search'])) {
   $getSearchedUserDataHandler = mysqli_query($connection, $getSearchedUserDataQuery)or die(mysqli_error($connection));
 }
 
-// GET ALL POST BY ID
 if (isset($_SESSION['loggedIn'])) {
   $userId = $_SESSION['userId'];
+
+  // GET ALL POST BY ID
   $getPostByIdQuery = "SELECT * FROM posts WHERE user_id = '$userId' ORDER BY created_at DESC";
   $getPostByIdHandler = mysqli_query($connection, $getPostByIdQuery) or die(mysqli_error($connection));
+
+  // GET FOLLOWING NUMBER
+  $getFollowingByIdQuery = "SELECT * FROM follows WHERE user_id = '$userId'";
+  $getFollowingByIdHandler = mysqli_query($connection, $getFollowingByIdQuery) or die(mysqli_error($connection));
+
+  // GET FOLLOWERS NUMBERS
+  $getFollowersByIdQuery = "SELECT * FROM follows WHERE follow_user_id = '$userId'";
+  $getFollowersByIdHandler = mysqli_query($connection, $getFollowersByIdQuery) or die(mysqli_error($connection));
+
+  // GET FEED POST
+  $getAllFeedPostQuery = "SELECT posts.post_id, posts.post, posts.created_at,posts.updated_at, posts.user_id, users.first_name, users.last_name, users.username FROM posts JOIN follows ON posts.user_id = follows.follow_user_id JOIN users ON posts.user_id = users.user_id WHERE follows.user_id = '$userId' ORDER BY created_at DESC";
+  $getAllFeedPostHandler = mysqli_query($connection, $getAllFeedPostQuery)or die(mysqli_error($connection));
 }
 
 // GET USER BY USERNAME
@@ -105,40 +118,18 @@ if (isset($_GET['username'])) {
   $getFollowersByUsernameHandler = mysqli_query($connection, $getFollowersByUsernameQuery) or die(mysqli_error($connection));
 }
 
-// GET FOLLOWING NUMBER
-if (isset($_SESSION['loggedIn'])) {
-  $userId = $_SESSION['userId'];
-  $getFollowingByIdQuery = "SELECT * FROM follows WHERE user_id = '$userId'";
-  $getFollowingByIdHandler = mysqli_query($connection, $getFollowingByIdQuery) or die(mysqli_error($connection));
-}
-
-//GET FOLLOWING USERS LIST
 if (isset($_GET['id'])) {
+  
+  //GET FOLLOWING USERS LIST
   $userId = $_GET['id'];
   $getFollowingUserQuery = "SELECT users.user_id, users.first_name, users.last_name, users.username FROM follows JOIN users ON follows.follow_user_id = users.user_id WHERE follows.user_id = '$userId'";
   $getFollowingUserHandler = mysqli_query($connection, $getFollowingUserQuery) or die(mysqli_error($connection));
+
+  //GET FOLLOWERS USERS LIST
+    $getFollowersUserQuery = "SELECT users.user_id, users.first_name, users.last_name, users.username FROM follows JOIN users ON follows.user_id = users.user_id WHERE follows.follow_user_id = '$userId'";
+    $getFollowersUserHandler = mysqli_query($connection, $getFollowersUserQuery) or die(mysqli_error($connection));
 }
 
-// GET FOLLOWERS NUMBERS
-if (isset($_SESSION['loggedIn'])) {
-  $userId = $_SESSION['userId'];
-  $getFollowersByIdQuery = "SELECT * FROM follows WHERE follow_user_id = '$userId'";
-  $getFollowersByIdHandler = mysqli_query($connection, $getFollowersByIdQuery) or die(mysqli_error($connection));
-}
-
-//GET FOLLOWERS USERS LIST
-if (isset($_GET['id'])) {
-  $userId = $_GET['id'];
-  $getFollowersUserQuery = "SELECT users.user_id, users.first_name, users.last_name, users.username FROM follows JOIN users ON follows.user_id = users.user_id WHERE follows.follow_user_id = '$userId'";
-  $getFollowersUserHandler = mysqli_query($connection, $getFollowersUserQuery) or die(mysqli_error($connection));
-}
-
-// GET FEED POST
-if (isset($_SESSION['loggedIn'])) {
-  $userId = $_SESSION['userId'];
-  $getAllFeedPostQuery = "SELECT posts.post_id, posts.post, posts.created_at,posts.updated_at, posts.user_id, users.first_name, users.last_name, users.username FROM posts JOIN follows ON posts.user_id = follows.follow_user_id JOIN users ON posts.user_id = users.user_id WHERE follows.user_id = '$userId' ORDER BY created_at DESC";
-  $getAllFeedPostHandler = mysqli_query($connection, $getAllFeedPostQuery)or die(mysqli_error($connection));
-}
 
 // GET POST ID
 if (isset($_GET['postid'])) {
