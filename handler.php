@@ -136,6 +136,34 @@ if (isset($_GET['id'])) {
 // GET FEED POST
 if (isset($_SESSION['loggedIn'])) {
   $userId = $_SESSION['userId'];
-  $getAllFeedPostQuery = "SELECT posts.post_id, posts.post, posts.created_at, posts.user_id, users.first_name, users.last_name, users.username FROM posts JOIN follows ON posts.user_id = follows.follow_user_id JOIN users ON posts.user_id = users.user_id WHERE follows.user_id = '$userId' ORDER BY created_at DESC";
+  $getAllFeedPostQuery = "SELECT posts.post_id, posts.post, posts.created_at,posts.updated_at, posts.user_id, users.first_name, users.last_name, users.username FROM posts JOIN follows ON posts.user_id = follows.follow_user_id JOIN users ON posts.user_id = users.user_id WHERE follows.user_id = '$userId' ORDER BY created_at DESC";
   $getAllFeedPostHandler = mysqli_query($connection, $getAllFeedPostQuery)or die(mysqli_error($connection));
+}
+
+// GET POST ID
+if (isset($_GET['postid'])) {
+  $postId = $_GET['postid'];
+  $getPostByPostIdQuery = "SELECT * FROM posts WHERE post_id = '$postId'";
+  $getPostByPostIdHandler = mysqli_query($connection, $getPostByPostIdQuery)or die(mysqli_error($connection));
+  $editPost = mysqli_fetch_assoc($getPostByPostIdHandler);
+}
+
+// UPDATE POST
+if (isset($_POST['postupdate'])) {
+  $postId = $_GET['postid'];
+  $postUpdate = $_POST['post'];
+  $updatePostQuery = "UPDATE posts SET post = '$postUpdate' WHERE post_id = '$postId'";
+  $updatePostHandler = mysqli_query($connection, $updatePostQuery)or die(mysqli_error($connection));
+  if ($updatePostHandler) {
+    echo "
+    <script>
+      alert('Post successfully updated')
+      window.location.href = 'profile.php';
+    </script>";
+  } else {
+    echo "
+    <script>
+      alert('Failed to update post')
+    </script>";
+  }
 }

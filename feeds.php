@@ -51,20 +51,27 @@ include("./handler.php");
       <?php
       while ($feed = mysqli_fetch_assoc($getAllFeedPostHandler)) {
       ?>
-        <a class="text-dark" href="users.php?username=<?= $feed['username'] ?>">
-          <div class="card mt-3">
+          <div class="card my-1">
             <div class="card-body row">
-              <div class="col-4 text-right">
+              <div class="col-4 text-center">
                 <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $feed['first_name'] ?>-<?= $feed['last_name'] ?>.svg" alt="">
               </div>
               <div class="col-8">
-                <h5 class="card-title"><?= $feed['username'] ?></h5>
-                <h6 class="card-subtitle text-secondary"><?= $feed['created_at'] ?></h6>
+                <a class="text-dark" href="users.php?username=<?= $feed['username'] ?>">
+                  <h5 class="card-title"><?= $feed['username'] ?></h5>
+                </a>
+                <div class="badge badge-pill badge-secondary"><?= $feed['created_at'] ?></div>
                 <p class="card-text"><?= htmlspecialchars($feed['post']) ?></p>
+                <?php if ($feed['created_at'] !== $feed['updated_at']) {?> 
+              <div class="text-right">
+                <span class="badge badge-pill badge-secondary">updated</span>
+              </div> 
+              <?php
+              }
+              ?>
               </div>
             </div>
           </div>
-        </a>
       <?php
       }
       ?>

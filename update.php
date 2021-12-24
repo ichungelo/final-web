@@ -34,51 +34,33 @@ include("./handler.php");
         <li class="nav-item">
           <a class="nav-link" href="./feeds.php">Feeds</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./profile.php">Profile</a>
-        </li>
         <li class="nav-item active">
-          <a class="nav-link private-shadow-text" href="./search.php">Search <span class="sr-only">(current)</span></a>
+          <a class="nav-link private-shadow-text" href="./profile.php">Profile <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./search.php">Search</a>
         </li>
       </ul>
       <a class="btn btn-outline-light my-2 my-sm-0 shadow-text" href="./logout.php">Logout</a>
     </div>
   </nav>
   <!-- PROFILE -->
-  <div class="container">
-    <br><br><br>
-    <form class="row" action="" method="POST">
-      <div class="form-group col-md-10">
-        <input type="text" class="form-control" name="searchText" placeholder="Enter username or name" required>
-      </div>
-      <div class="form-group col-md-2">
-        <button type="submit" class="btn btn-warning btn-block" name="search">Search</button>
-      </div>
-    </form>
-  </div>
-  <div class="container">
-    <div class="card-columns">
-      <?php
-      if (isset($searchStatus)) {
-        while ($result = mysqli_fetch_assoc($getSearchedUserDataHandler)) {
-      ?>
-          <a href="<?= ($_SESSION['userId'] === $result['user_id']) ? "profile.php" : "users.php?username={$result['username']}" ?>" class="text-dark">
-            <div class="card mt-3">
-              <div class="card-body row">
-                <div class="col-4">
-                  <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $result['first_name'] ?>-<?= $result['last_name'] ?>.svg" alt="">
-                </div>
-                <div class="col-8">
-                  <h5 class="card-title"><?= $result['username'] ?></h5>
-                  <p class="card-text"><?= $result['first_name'] ?> <?= $result['last_name'] ?></p>
-                </div>
+  <br><br><br>
+  <div class="container d-flex justify-content-center">
+    <div class="col-lg-8">
+      <div class="card mt-3">
+        <h4 class="card-title text-center my-2">Update post</h4>
+        <div class="card-body">
+          <form method="POST">
+            <div class="form-row">
+              <div class="behind-nav form-group col-12">
+                <textarea class="form-control form-control-sm" name="post" rows="6" maxlength="255" required><?= isset($postId) === true ? $editPost['post'] : ""?></textarea>
               </div>
+              <button type="submit" class="btn btn-warning ml-auto btn-block" name="postupdate">UPDATE</button>
             </div>
-          </a>
-      <?php
-        }
-      }
-      ?>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
   <!-- Optional JavaScript; choose one of the two! -->

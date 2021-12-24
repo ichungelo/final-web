@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['loggedIn'])) {
-  header('Location: feeds.php');
+  header('Location: profile.php');
 }
 include('./handler.php');
 ?>
