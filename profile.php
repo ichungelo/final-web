@@ -48,7 +48,7 @@ include("./handler.php");
   <br><br><br>
   <div class="container d-flex justify-content-center">
     <div class="col-lg-8">
-      <div class="card mt-3">
+      <div class="card my-1">
         <h4 class="card-title text-center my-2"><?= $_SESSION['username'] ?></h4>
         <div class="card-body">
           <div class="text-center">
@@ -82,7 +82,7 @@ include("./handler.php");
           </div>
         </div>
       </div>
-      <div class="card mt-3">
+      <div class="card mb-3">
         <h4 class="card-title text-center my-2">Create new post</h4>
         <div class="card-body">
           <form method="POST">
@@ -98,7 +98,7 @@ include("./handler.php");
       <?php
       while ($post = mysqli_fetch_assoc($getPostByIdHandler)) {
       ?>
-        <div class="card mt-3">
+        <div class="card my-1">
           <div class="card-body row">
             <div class="col-4 text-center">
               <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">

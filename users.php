@@ -48,7 +48,7 @@ include("./handler.php");
     <br><br><br>
   <div class="container d-flex justify-content-center">
     <div class="col-lg-8">
-      <div class="card mt-3">
+      <div class="card mt-1 mb-3">
         <h4 class="card-title text-center my-2"><?= $userData['username'] ?></h4>
         <div class="card-body">
           <div class="text-center">
@@ -104,7 +104,7 @@ include("./handler.php");
       <?php
       while ($post = mysqli_fetch_assoc($getPostByUsernameHandler)) {
       ?>
-        <div class="card mt-3">
+        <div class="card my-1">
           <div class="card-body row">
             <div class="col-4 text-center">
               <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $userData['first_name'] ?>-<?= $userData['last_name'] ?>.svg" alt="">
