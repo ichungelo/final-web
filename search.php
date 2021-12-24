@@ -62,7 +62,7 @@ include("./handler.php");
       if (isset($searchStatus)) {
         while ($result = mysqli_fetch_assoc($getSearchedUserDataHandler)) {
       ?>
-          <a href="<?= ($_SESSION['userId'] === $result['user_id']) ? "profile.php" : "users.php?username={$result['username']}" ?>" class="text-dark">
+          <a href="<?= ($_SESSION['userId'] === $result['user_id']) ? "profile.php" : "users.php?id={$result['user_id']}" ?>" class="text-dark">
             <div class="card mt-3">
               <div class="card-body row">
                 <div class="col-4">
