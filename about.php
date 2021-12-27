@@ -17,7 +17,7 @@
   <title>Knotext</title>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 private-background">
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark private-style-navbar">
     <a class="navbar-brand text-sm" href="./index.php">

@@ -70,18 +70,37 @@ include('./handler.php');
     ?>
   </div>
   <!-- HOMEPAGE -->
-  <div class="container my-3">
-    <div class="row">
+  <div class="container-fluid px-0">
+    <div class="row no-gutters">
       <!-- HOMETEXT -->
       <div class="col-lg-7">
-        <p>Welcome To</p>
-        <h1>Knotext</h1>
-        <p>Knotext is an simple textbased social media, inspired by twitter but much simpler. build for compleeting final submission project in mini bootcamp with studybox. </p>
-        <img class="private-style-homeimage mx-auto d-block" src="./assets/images/601.png" alt="">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="./assets/images/slides1.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption">
+                <p class="private-shadow-text">Welcome to</p>
+                <h1 class="private-shadow-text">Knotext</h1>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="./assets/images/slides2.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption">
+                <p class="private-style-carousel-text p-1">Knotext is a simple textbased social media, inspired by twitter but much simpler. build for compleeting final submission project at mini bootcamp with studybox.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="./assets/images/slides3.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption">
+                <p class="private-style-carousel-text p-1">Feel free to use this page and copy this repo with <a class="btn btn-warning btn-sm" href="https://github.com/ichungelo/final-web.git" target="_blank">Click this Button</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- REGISTER -->
-      <div class="col-lg-5">
-        <div class="card">
+      <div class="col-lg-5" style="background-color: white;">
+        <div class="container">
           <?php
           ?>
           <div class="card-body">
@@ -144,7 +163,7 @@ include('./handler.php');
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
-<footer class="mt-auto bg-light text-center">
+<footer class=" bg-light text-center">
   Copyright &#169 Ichungelo inc 2021, All rights reserved
 </footer>
 
