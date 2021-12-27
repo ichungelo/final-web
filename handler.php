@@ -1,5 +1,9 @@
 <?php
 include("config.php");
+
+//LOCAL TIME SET
+date_default_timezone_set('Asia/Jakarta');
+
 // REGISTER
 if (isset($_POST['register'])) {
   $randomGenerator = random_bytes(16);

@@ -60,7 +60,8 @@ include("./handler.php");
                 <a class="text-dark" href="users.php?id=<?= $feed['user_id'] ?>">
                   <h5 class="card-title"><?= $feed['username'] ?></h5>
                 </a>
-                <div class="badge badge-pill badge-secondary"><?= $feed['created_at'] ?></div>
+                <div class="badge badge-pill badge-secondary"><?= date('D, d M Y', strtotime($feed['created_at'].' UTC' )) ?></div>
+                <div class="badge badge-pill badge-secondary"><?= date('H:i A', strtotime($feed['created_at'].' UTC')) ?></div>
                 <p class="card-text"><?= htmlspecialchars($feed['post']) ?></p>
                 <?php if ($feed['created_at'] !== $feed['updated_at']) {?> 
               <div class="text-right">
