@@ -108,7 +108,8 @@ include("./handler.php");
                 <span aria-hidden="true">&times;</span>
               </a>
               <h5 class="card-title"><?= $_SESSION['username'] ?></h5>
-              <div class="badge badge-pill badge-secondary"><?= $post['created_at'] ?></div>
+              <div class="badge badge-pill badge-secondary"><?= date('D, d M Y', strtotime($post['created_at'].' UTC' )) ?></div>
+                <div class="badge badge-pill badge-secondary"><?= date('H:i A', strtotime($post['created_at'].' UTC')) ?></div>
               <p class="card-text"><?= htmlspecialchars($post['post']) ?></p>
               <?php if ($post['created_at'] !== $post['updated_at']) {?> 
               <div class="text-right">
