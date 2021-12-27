@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5, h6, button, a {
   font-family: 'Righteous', cursive;
 }
 
-body {
+.private-background {
   background-image: url(./assets/images/background.svg);
   background-size: contain;
   background-position: bottom;
@@ -43,4 +43,11 @@ body {
 .private-style-avatar {
   width: 80px;
   border-radius: 50%;
+}
+
+
+.private-style-carousel-text {
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px black;
+  margin: 10px 0;
 }
