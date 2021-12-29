@@ -40,7 +40,7 @@
         <form class="form-inline my-2 my-lg-0 mr-0 col-12 justify-content-sm-center">
           <input class="form-control my-1 mr-sm-2" type="text" placeholder="Username">
           <input class="form-control my-1 mr-sm-2" type="password" placeholder="Password">
-          <button class="btn btn-outline-light my-2 my-sm-0 shadow-text" type="submit">Login</button>
+          <button class="btn btn-warning my-2 my-sm-0 shadow-text" type="submit">Login</button>
         </form>
       </div>
     </div>
