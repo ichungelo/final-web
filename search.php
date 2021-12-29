@@ -45,8 +45,7 @@ include("./handler.php");
     </div>
   </nav>
   <!-- PROFILE -->
-  <div class="container">
-    <br><br><br>
+  <div class="container private-margin-nav">
     <form class="row" action="" method="POST">
       <div class="form-group col-md-10">
         <input type="text" class="form-control" name="searchText" placeholder="Enter username or name" required>

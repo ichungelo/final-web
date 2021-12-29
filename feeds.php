@@ -45,8 +45,7 @@ include("./handler.php");
     </div>
   </nav>
   <!-- FEEDS -->
-  <br><br><br>
-  <div class="container d-flex justify-content-center">
+  <div class="container d-flex justify-content-center private-margin-nav">
     <div class="col-lg-8">
       <?php
       while ($feed = mysqli_fetch_assoc($getAllFeedPostHandler)) {

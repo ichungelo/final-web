@@ -45,8 +45,7 @@ include("./handler.php");
     </div>
   </nav>
   <!-- FOLLOWING LIST -->
-  <br><br><br>
-  <div class="container">
+  <div class="container private-margin-nav">
     <h1>Following List</h1>
   </div>
   <div class="container">
