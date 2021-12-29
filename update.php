@@ -45,8 +45,7 @@ include("./handler.php");
     </div>
   </nav>
   <!-- PROFILE -->
-  <br><br><br>
-  <div class="container d-flex justify-content-center">
+  <div class="container d-flex justify-content-center private-margin-nav">
     <div class="col-lg-8">
       <div class="card mt-3">
         <h4 class="card-title text-center my-2">Update post</h4>
