@@ -154,14 +154,12 @@ if (isset($_GET['username'])) {
   $getFollowingUserHandler = mysqli_query($connection, $getFollowingUserQuery) or die(mysqli_error($connection));
 
   //GET FOLLOWERS USERS LIST
-    $getFollowersUserQuery = "SELECT users.user_id, users.first_name, users.last_name, users.username FROM follows JOIN users ON follows.user_id = users.user_id WHERE follows.follow_user_id = '$userId'";
-    $getFollowersUserHandler = mysqli_query($connection, $getFollowersUserQuery) or die(mysqli_error($connection));
+  $getFollowersUserQuery = "SELECT users.user_id, users.first_name, users.last_name, users.username FROM follows JOIN users ON follows.user_id = users.user_id WHERE follows.follow_user_id = '$userId'";
+  $getFollowersUserHandler = mysqli_query($connection, $getFollowersUserQuery) or die(mysqli_error($connection));
 }
 
-
-// GET POST ID
-if (isset($_GET['username']) && isset($_GET['postid'])) {
-  $postId = $_GET['postid'];
+if (isset($_POST['edit'])) {
+  $postId = $_POST['postId'];
   $getPostByPostIdQuery = "SELECT * FROM posts WHERE post_id = '$postId'";
   $getPostByPostIdHandler = mysqli_query($connection, $getPostByPostIdQuery)or die(mysqli_error($connection));
   $editPost = mysqli_fetch_assoc($getPostByPostIdHandler);
@@ -169,27 +167,20 @@ if (isset($_GET['username']) && isset($_GET['postid'])) {
 
 // UPDATE POST
 if (isset($_POST['postupdate'])) {
-  if ($_SESSION['userId'] === $editPost['user_id'] && $_SESSION['loggedIn']) {
-    $postId = $_GET['postid'];
-    $postUpdate = $_POST['post'];
-    $updatePostQuery = "UPDATE posts SET post = '$postUpdate' WHERE post_id = '$postId'";
-    $updatePostHandler = mysqli_query($connection, $updatePostQuery)or die(mysqli_error($connection));
-    if ($updatePostHandler) {
-      echo "
-      <script>
-        alert('Post successfully updated')
-        window.location.href = 'profile.php';
-      </script>";
-    } else {
-      echo "
-      <script>
-        alert('Failed to update post')
-      </script>";
-    }
+  $postId = $_POST['post_id'];
+  $postUpdate = $_POST['post'];
+  $updatePostQuery = "UPDATE posts SET post = '$postUpdate' WHERE post_id = '$postId'";
+  $updatePostHandler = mysqli_query($connection, $updatePostQuery)or die(mysqli_error($connection));
+  if ($updatePostHandler) {
+    echo "
+    <script>
+      alert('Post successfully updated')
+      window.location.href = 'profile.php';
+    </script>";
   } else {
-    echo "<script>
-            alert(`Please login first`)
-            window.location.href = 'index.php'
-          </script>";
+    echo "
+    <script>
+      alert('Failed to update post')
+    </script>";
   }
 }

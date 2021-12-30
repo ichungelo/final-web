@@ -53,7 +53,8 @@ include("./handler.php");
           <form method="POST">
             <div class="form-row">
               <div class="behind-nav form-group col-12">
-                <textarea class="form-control form-control-sm" name="post" rows="6" maxlength="255" required><?= isset($postId) === true ? $editPost['post'] : ""?></textarea>
+                <input type="hidden" name="post_id" value="<?= $editPost['post_id'] ?>">
+                <textarea class="form-control form-control-sm" name="post" rows="6" maxlength="255" required><?= isset($postId) === true ? $editPost['post'] : "" ?></textarea>
               </div>
               <button type="submit" class="btn btn-warning ml-auto btn-block" name="postupdate">UPDATE</button>
             </div>

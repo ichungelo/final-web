@@ -1,9 +1,9 @@
 <?php
 session_start();
 include('config.php');
-if (isset($_GET['id'])) {
+if (isset($_POST['follow'])) {
   $idUser = $_SESSION['userId'];
-  $idFollow = $_GET['id'];
+  $idFollow = $_POST['followId'];
   $checkFollowQuery = "SELECT * FROM `follows` WHERE user_id = '$idUser' AND follow_user_id = '$idFollow'";
   $checkFollowHandler = mysqli_query($connection, $checkFollowQuery)or die(mysqli_error($connection));
   if (mysqli_num_rows($checkFollowHandler) > 0) {

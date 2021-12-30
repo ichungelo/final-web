@@ -103,9 +103,12 @@ include("./handler.php");
               <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">
             </div>
             <div class="col-8">
-              <a href="delete.php?postid=<?= $post['post_id'] ?>" class="close" aria-label="Close" onclick="return confirm('Are you sure you want to delete this post')">
-                <span aria-hidden="true">&times;</span>
-              </a>
+              <form action="./delete.php" method="POST">
+                <input type="hidden" name="postId" value="<?= $post['post_id']?>">
+                <button type="submit" class="close" aria-label="Close" name="delete" onclick="return confirm('Are you sure you want to delete this post?')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </form>
               <h5 class="card-title"><?= $_SESSION['username'] ?></h5>
               <div class="badge badge-pill badge-secondary"><?= date('D, d M Y', strtotime($post['created_at'].' UTC' )) ?></div>
                 <div class="badge badge-pill badge-secondary"><?= date('h:i A', strtotime($post['created_at'].' UTC')) ?></div>
@@ -117,7 +120,12 @@ include("./handler.php");
               <?php
               }
               ?>
-              <a href="update.php?username=<?= $_SESSION['username'] ?>&postid=<?= $post['post_id'] ?>">Update Post</a>
+              <form action="./update.php" method="POST">
+                <input type="hidden" name="postId" value="<?= $post['post_id']?>">
+                <button type="submit" class="btn btn-link ml-auto" name="edit">
+                  Edit
+                </button>
+              </form>
             </div>
           </div>
         </div>

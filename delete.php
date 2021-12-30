@@ -1,8 +1,8 @@
 <?php
 session_start();
 include('config.php');
-if (isset($_GET['postid'])) {
-  $id = $_GET['postid'];
+if (isset($_POST['delete'])) {
+  $id = $_POST['postId'];
   $checkPostByIdQuery = "SELECT * FROM posts WHERE post_id = '$id'";
   $checkPostByIdHandler = mysqli_query($connection, $checkPostByIdQuery) or die(mysqli_error($connection));
   if (mysqli_num_rows($checkPostByIdHandler) > 0) {

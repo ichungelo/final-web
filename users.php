@@ -61,19 +61,22 @@ include("./handler.php");
                   <div><?= $userData['email'] ?></div>
                 </div>
                 <div class="col-md-12">
-                <?php
-                if ($_SESSION['userId'] !== $userData['user_id']) {
-                  $idUser = $_SESSION['userId'];
-                  $idFollow = $userData['user_id'];
-                  $checkFollowQuery = "SELECT * FROM `follows` WHERE user_id = '$idUser' AND follow_user_id = '$idFollow'";
-                  $checkFollowHandler = mysqli_query($connection, $checkFollowQuery) or die(mysqli_error($connection));
-                ?>
-                  <a href="follow.php?id=<?= $userData['user_id'] ?>" class="btn <?= mysqli_num_rows($checkFollowHandler) > 0 ? "btn-danger" : "btn-success" ?> btn-sm btn-block" rows="4">
-                    <?= mysqli_num_rows($checkFollowHandler) > 0 ? "Unfollow" : "Follow" ?>
-                  </a>
-                <?php
-                }
-                ?>
+                  <?php
+                  if ($_SESSION['userId'] !== $userData['user_id']) {
+                    $idUser = $_SESSION['userId'];
+                    $idFollow = $userData['user_id'];
+                    $checkFollowQuery = "SELECT * FROM `follows` WHERE user_id = '$idUser' AND follow_user_id = '$idFollow'";
+                    $checkFollowHandler = mysqli_query($connection, $checkFollowQuery) or die(mysqli_error($connection));
+                  ?>
+                    <form action="./follow.php" method="POST">
+                      <input type="hidden" name="followId" value="<?= $userData['user_id'] ?>">
+                      <button type="submit" class="btn <?= mysqli_num_rows($checkFollowHandler) > 0 ? "btn-danger" : "btn-success" ?> ml-auto btn-block btn-sm" name="follow">
+                        <?= mysqli_num_rows($checkFollowHandler) > 0 ? "Unfollow" : "Follow" ?>
+                      </button>
+                    </form>
+                  <?php
+                  }
+                  ?>
                 </div>
               </div>
             </div>
@@ -108,13 +111,13 @@ include("./handler.php");
             </div>
             <div class="col-8">
               <h5 class="card-title"><?= $userData['username'] ?></h5>
-              <div class="badge badge-pill badge-secondary"><?= date('D, d M Y', strtotime($post['created_at'].' UTC' )) ?></div>
-                <div class="badge badge-pill badge-secondary"><?= date('h:i A', strtotime($post['created_at'].' UTC')) ?></div>
+              <div class="badge badge-pill badge-secondary"><?= date('D, d M Y', strtotime($post['created_at'] . ' UTC')) ?></div>
+              <div class="badge badge-pill badge-secondary"><?= date('h:i A', strtotime($post['created_at'] . ' UTC')) ?></div>
               <p class="card-text"><?= htmlspecialchars($post['post']) ?></p>
-              <?php if ($post['created_at'] !== $post['updated_at']) {?> 
-              <div class="text-right">
-                <span class="badge badge-pill badge-secondary">updated</span>
-              </div> 
+              <?php if ($post['created_at'] !== $post['updated_at']) { ?>
+                <div class="text-right">
+                  <span class="badge badge-pill badge-secondary">updated</span>
+                </div>
               <?php
               }
               ?>
