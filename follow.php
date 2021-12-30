@@ -6,6 +6,12 @@ if (isset($_POST['follow'])) {
   $idFollow = $_POST['followId'];
   $checkFollowQuery = "SELECT * FROM `follows` WHERE user_id = '$idUser' AND follow_user_id = '$idFollow'";
   $checkFollowHandler = mysqli_query($connection, $checkFollowQuery)or die(mysqli_error($connection));
+
+  $getUsernameByIdQuery = "SELECT username FROM users WHERE user_id = '$idFollow'";
+  $getUsernameByIdHandler = mysqli_query($connection, $getUsernameByIdQuery)or die(mysqli_error($connection));
+
+  $userData = mysqli_fetch_assoc($getUsernameByIdHandler);
+  
   if (mysqli_num_rows($checkFollowHandler) > 0) {
     $unfollowQuery = "DELETE FROM follows WHERE user_id = '$idUser' AND follow_user_id = '$idFollow'";
     $unfollowHandler = mysqli_query($connection, $unfollowQuery)or die(mysqli_error($connection));
@@ -13,7 +19,7 @@ if (isset($_POST['follow'])) {
       echo "
         <script>
           alert('Unfollow Success')
-          window.location.href = 'users.php?id={$idFollow}';
+          window.location.href = 'users.php?username={$userData['username']}';
         </script>";
     } else {
       echo "
@@ -28,7 +34,7 @@ if (isset($_POST['follow'])) {
       echo "
         <script>
           alert('Follow Success')
-          window.location.href = 'users.php?id={$idFollow}';
+          window.location.href = 'users.php?username={$userData['username']}';
         </script>";
     } else {
       echo "
