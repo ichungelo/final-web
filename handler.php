@@ -53,7 +53,7 @@ if (isset($_POST['login'])) {
   if (mysqli_num_rows($usernameCheckHandler) === 1) {
     $result = mysqli_fetch_assoc($usernameCheckHandler);
     if (password_verify($password, $result['password'])) {
-      $usernameCheckQuery = "SELECT * FROM users WHERE username = '$username'";
+      $usernameCheckQuery = "SELECT user_id, email, first_name, last_name, username FROM users WHERE username = '$username'";
       $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery);
       $user = mysqli_fetch_assoc($usernameCheckHandler);
       $_SESSION['userId'] = $user['user_id'];
@@ -75,21 +75,28 @@ if (isset($_POST['login'])) {
 
 // POST BY ID
 if (isset($_POST['send'])) {
-  $randomGenerator = random_bytes(16);
-
-  $postId = bin2hex($randomGenerator);
-  $content = $_POST['content'];
-  $userId = $_SESSION['userId'];
-
-  $postContentQuery = "INSERT INTO posts (user_id, post, post_id) VALUES ('$userId', '$content', '$postId')";
-  $postContentHandler = mysqli_query($connection, $postContentQuery) or die(mysqli_error($connection));
+  if($_SESSION['loggedIn']) {
+    $randomGenerator = random_bytes(16);
+  
+    $postId = bin2hex($randomGenerator);
+    $content = $_POST['content'];
+    $userId = $_SESSION['userId'];
+  
+    $postContentQuery = "INSERT INTO posts (user_id, post, post_id) VALUES ('$userId', '$content', '$postId')";
+    $postContentHandler = mysqli_query($connection, $postContentQuery) or die(mysqli_error($connection));
+  } else {
+    echo "<script>
+            alert(`Please login first`)
+            window.location.href = 'index.php'
+          </script>";
+  }
 }
 
 // GET SEARCHED USER DATA
 if (isset($_POST['search'])) {
   $searchStatus = true;
   $searchText = $_POST['searchText'];
-  $getSearchedUserDataQuery = "SELECT * FROM users WHERE ( username LIKE '%$searchText%' OR first_name LIKE '%$searchText%' OR last_name LIKE '%$searchText%')";
+  $getSearchedUserDataQuery = "SELECT user_id, email, first_name, last_name, username FROM users WHERE ( username LIKE '%$searchText%' OR first_name LIKE '%$searchText%' OR last_name LIKE '%$searchText%')";
   $getSearchedUserDataHandler = mysqli_query($connection, $getSearchedUserDataQuery)or die(mysqli_error($connection));
 }
 
@@ -113,27 +120,36 @@ if (isset($_SESSION['loggedIn'])) {
   $getAllFeedPostHandler = mysqli_query($connection, $getAllFeedPostQuery)or die(mysqli_error($connection));
 }
 
-// GET USER BY USERNAME
-if (isset($_GET['id'])) {
-  $userId = $_GET['id'];
-  $getUserByUsernameQuery = "SELECT * FROM users WHERE user_id = '$userId'";
+// GET USER DATA BY USERNAME
+if (isset($_GET['username'])) {
+  $username = $_GET['username'];
+  $getUserByUsernameQuery = "SELECT user_id, email, first_name, last_name, username FROM users WHERE username = '$username'";
   $getUserByUsernameHandler = mysqli_query($connection, $getUserByUsernameQuery)or die(mysqli_error($connection));
-
   $userData = mysqli_fetch_assoc($getUserByUsernameHandler);
+  $userId = $userData['user_id'];
+  
+  // GET POST NUMBERS
   $getPostByUsernameQuery = "SELECT * FROM posts WHERE user_id = '$userId' ORDER BY created_at DESC";
   $getPostByUsernameHandler = mysqli_query($connection, $getPostByUsernameQuery) or die(mysqli_error($connection));
 
+  // GET FOLLOWING NUMBERS
   $getFollowingByUsernameQuery = "SELECT * FROM follows WHERE user_id = '$userId'";
   $getFollowingByUsernameHandler = mysqli_query($connection, $getFollowingByUsernameQuery) or die(mysqli_error($connection));
 
+  // GET FOLLOWERS NUMBERS
   $getFollowersByUsernameQuery = "SELECT * FROM follows WHERE follow_user_id = '$userId'";
   $getFollowersByUsernameHandler = mysqli_query($connection, $getFollowersByUsernameQuery) or die(mysqli_error($connection));
 }
 
-if (isset($_GET['id'])) {
-  
+if (isset($_GET['username'])) {
+  $username = $_GET['username'];
+
+  $getIdFromUsersQuery = "SELECT user_id, email, first_name, last_name, username FROM users WHERE username = '$username'";
+  $getIdFromUsersHandler = mysqli_query($connection, $getIdFromUsersQuery)or die(mysqli_error($connection));
+  $getUsers = mysqli_fetch_assoc($getIdFromUsersHandler);
+  $userId = $getUsers['user_id'];
+
   //GET FOLLOWING USERS LIST
-  $userId = $_GET['id'];
   $getFollowingUserQuery = "SELECT users.user_id, users.first_name, users.last_name, users.username FROM follows JOIN users ON follows.follow_user_id = users.user_id WHERE follows.user_id = '$userId'";
   $getFollowingUserHandler = mysqli_query($connection, $getFollowingUserQuery) or die(mysqli_error($connection));
 
@@ -144,7 +160,7 @@ if (isset($_GET['id'])) {
 
 
 // GET POST ID
-if (isset($_GET['postid'])) {
+if (isset($_GET['username']) && isset($_GET['postid'])) {
   $postId = $_GET['postid'];
   $getPostByPostIdQuery = "SELECT * FROM posts WHERE post_id = '$postId'";
   $getPostByPostIdHandler = mysqli_query($connection, $getPostByPostIdQuery)or die(mysqli_error($connection));
@@ -153,20 +169,27 @@ if (isset($_GET['postid'])) {
 
 // UPDATE POST
 if (isset($_POST['postupdate'])) {
-  $postId = $_GET['postid'];
-  $postUpdate = $_POST['post'];
-  $updatePostQuery = "UPDATE posts SET post = '$postUpdate' WHERE post_id = '$postId'";
-  $updatePostHandler = mysqli_query($connection, $updatePostQuery)or die(mysqli_error($connection));
-  if ($updatePostHandler) {
-    echo "
-    <script>
-      alert('Post successfully updated')
-      window.location.href = 'profile.php';
-    </script>";
+  if ($_SESSION['userId'] === $editPost['user_id'] && $_SESSION['loggedIn']) {
+    $postId = $_GET['postid'];
+    $postUpdate = $_POST['post'];
+    $updatePostQuery = "UPDATE posts SET post = '$postUpdate' WHERE post_id = '$postId'";
+    $updatePostHandler = mysqli_query($connection, $updatePostQuery)or die(mysqli_error($connection));
+    if ($updatePostHandler) {
+      echo "
+      <script>
+        alert('Post successfully updated')
+        window.location.href = 'profile.php';
+      </script>";
+    } else {
+      echo "
+      <script>
+        alert('Failed to update post')
+      </script>";
+    }
   } else {
-    echo "
-    <script>
-      alert('Failed to update post')
-    </script>";
+    echo "<script>
+            alert(`Please login first`)
+            window.location.href = 'index.php'
+          </script>";
   }
 }

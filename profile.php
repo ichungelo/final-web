@@ -63,13 +63,13 @@ include("./handler.php");
           </div>
           <div class="row my-2">
             <div class="col-md-4 text-center">
-              <a href="followers.php?id=<?= $_SESSION['userId'] ?>" class="text-dark">
+              <a href="followers.php?username=<?= $_SESSION['username'] ?>" class="text-dark">
                 <h6>followers</h6>
                 <p><?= mysqli_num_rows($getFollowersByIdHandler) ?></p>
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="following.php?id=<?= $_SESSION['userId'] ?>" class="text-dark">
+              <a href="following.php?username=<?= $_SESSION['username'] ?>" class="text-dark">
                 <h6>following</h6>
                 <p><?= mysqli_num_rows($getFollowingByIdHandler) ?></p>
               </a>
@@ -117,7 +117,7 @@ include("./handler.php");
               <?php
               }
               ?>
-              <a href="update.php?postid=<?= $post['post_id'] ?>">Update Post</a>
+              <a href="update.php?username=<?= $_SESSION['username'] ?>&postid=<?= $post['post_id'] ?>">Update Post</a>
             </div>
           </div>
         </div>
