@@ -63,13 +63,13 @@ include("./handler.php");
           </div>
           <div class="row my-2">
             <div class="col-md-4 text-center">
-              <a href="followers.php?id=<?= $_SESSION['userId'] ?>" class="text-dark">
+              <a href="followers.php?username=<?= $_SESSION['username'] ?>" class="text-dark">
                 <h6>followers</h6>
                 <p><?= mysqli_num_rows($getFollowersByIdHandler) ?></p>
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="following.php?id=<?= $_SESSION['userId'] ?>" class="text-dark">
+              <a href="following.php?username=<?= $_SESSION['username'] ?>" class="text-dark">
                 <h6>following</h6>
                 <p><?= mysqli_num_rows($getFollowingByIdHandler) ?></p>
               </a>
@@ -103,9 +103,12 @@ include("./handler.php");
               <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $_SESSION['firstName'] ?>-<?= $_SESSION['lastName'] ?>.svg" alt="">
             </div>
             <div class="col-8">
-              <a href="delete.php?postid=<?= $post['post_id'] ?>" class="close" aria-label="Close" onclick="return confirm('Are you sure you want to delete this post')">
-                <span aria-hidden="true">&times;</span>
-              </a>
+              <form action="./delete.php" method="POST">
+                <input type="hidden" name="postId" value="<?= $post['post_id']?>">
+                <button type="submit" class="close" aria-label="Close" name="delete" onclick="return confirm('Are you sure you want to delete this post?')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </form>
               <h5 class="card-title"><?= $_SESSION['username'] ?></h5>
               <div class="badge badge-pill badge-secondary"><?= date('D, d M Y', strtotime($post['created_at'].' UTC' )) ?></div>
                 <div class="badge badge-pill badge-secondary"><?= date('h:i A', strtotime($post['created_at'].' UTC')) ?></div>
@@ -117,7 +120,12 @@ include("./handler.php");
               <?php
               }
               ?>
-              <a href="update.php?postid=<?= $post['post_id'] ?>">Update Post</a>
+              <form action="./update.php" method="POST">
+                <input type="hidden" name="postId" value="<?= $post['post_id']?>">
+                <button type="submit" class="btn btn-link ml-auto" name="edit">
+                  Edit
+                </button>
+              </form>
             </div>
           </div>
         </div>

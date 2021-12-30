@@ -56,7 +56,7 @@ include("./handler.php");
                 <img class="private-style-avatar" src="https://avatars.dicebear.com/api/initials/<?= $feed['first_name'] ?>-<?= $feed['last_name'] ?>.svg" alt="">
               </div>
               <div class="col-8">
-                <a class="text-dark" href="users.php?id=<?= $feed['user_id'] ?>">
+                <a class="text-dark" href="users.php?username=<?= $feed['username'] ?>">
                   <h5 class="card-title"><?= $feed['username'] ?></h5>
                 </a>
                 <div class="badge badge-pill badge-secondary"><?= date('D, d M Y', strtotime($feed['created_at'].' UTC' )) ?></div>
