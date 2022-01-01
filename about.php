@@ -1,6 +1,9 @@
 <?php
-// include("./config.php")
-
+session_start();
+if (isset($_SESSION['loggedIn'])) {
+  header('Location: profile.php');
+}
+include('./handler.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -37,7 +40,7 @@
         </li>
       </ul>
       <div>
-      <form class="form-inline justify-content-sm-center" method="POST">
+        <form class="form-inline justify-content-sm-center" method="POST">
           <input class="form-control my-1 mr-sm-2" type="text" name="loginUsername" placeholder="Username" required>
           <input class="form-control my-1 mr-sm-2" type="password" name="loginPassword" placeholder="Password" required>
           <button class="btn btn-warning my-2 my-sm-0 shadow-text" name="login">Login</button>
