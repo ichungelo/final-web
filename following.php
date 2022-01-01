@@ -53,7 +53,7 @@ include("./handler.php");
       <?php
         while ($result = mysqli_fetch_assoc($getFollowingUserHandler)) {
       ?>
-          <a href="users.php?username=<?= $result['username'] ?>" class="text-dark">
+          <a href="<?= ($_SESSION['userId'] === $result['user_id']) ? "profile.php" : "users.php?username={$result['username']}" ?>" class="text-dark">
             <div class="card mt-3">
               <div class="card-body row">
                 <div class="col-4">
