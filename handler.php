@@ -46,31 +46,37 @@ if (isset($_POST['register'])) {
 if (isset($_POST['login'])) {
   $username = $_POST['loginUsername'];
   $password = $_POST['loginPassword'];
+  $isRemember = $_POST['remember'];
 
-  $usernameCheckQuery = "SELECT * FROM users WHERE username = '$username'";
-  $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery)or die(mysqli_error($connection));
-
-  if (mysqli_num_rows($usernameCheckHandler) === 1) {
-    $result = mysqli_fetch_assoc($usernameCheckHandler);
-    if (password_verify($password, $result['password'])) {
-      $usernameCheckQuery = "SELECT user_id, email, first_name, last_name, username FROM users WHERE username = '$username'";
-      $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery);
-      $user = mysqli_fetch_assoc($usernameCheckHandler);
-      $_SESSION['userId'] = $user['user_id'];
-      $_SESSION['email'] = $user['email'];
-      $_SESSION['username'] = $user['username'];
-      $_SESSION['firstName'] = $user['first_name'];
-      $_SESSION['lastName'] = $user['last_name'];
-      $_SESSION['loggedIn'] = true;
-
-      header('Location: feeds.php');
-      exit;
-    } else {
-      $loginErrorPassword = true;
-    }
+  if ($isRemember) {
+    echo 'Remember success';
   } else {
-    $loginErrorUsername = true;
+    $usernameCheckQuery = "SELECT * FROM users WHERE username = '$username'";
+    $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery)or die(mysqli_error($connection));
+  
+    if (mysqli_num_rows($usernameCheckHandler) === 1) {
+      $result = mysqli_fetch_assoc($usernameCheckHandler);
+      if (password_verify($password, $result['password'])) {
+        $usernameCheckQuery = "SELECT user_id, email, first_name, last_name, username FROM users WHERE username = '$username'";
+        $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery);
+        $user = mysqli_fetch_assoc($usernameCheckHandler);
+        $_SESSION['userId'] = $user['user_id'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['firstName'] = $user['first_name'];
+        $_SESSION['lastName'] = $user['last_name'];
+        $_SESSION['loggedIn'] = true;
+  
+        header('Location: feeds.php');
+        exit;
+      } else {
+        $loginErrorPassword = true;
+      }
+    } else {
+      $loginErrorUsername = true;
+    }
   }
+
 }
 
 // POST BY ID
