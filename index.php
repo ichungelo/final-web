@@ -45,12 +45,6 @@ include('./handler.php');
           <input class="form-control my-1 mr-sm-2" type="password" name="loginPassword" placeholder="Password" required>
           <button class="btn btn-warning my-2 my-sm-0 shadow-text" name="login">Login</button>
         </form>
-        <div class="form-check my-1 col-12 text-left">
-          <input class="form-check-input" type="checkbox" name="remember">
-          <label class="form-check-label text-light">
-            Remember Me
-          </label>
-        </div>
       </div>
     </div>
   </nav>
