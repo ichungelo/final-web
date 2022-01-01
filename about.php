@@ -56,6 +56,26 @@ include('./handler.php');
       </div>
     </div>
   </nav>
+  <!-- ERROR LOGIN -->
+  <div>
+    <?php
+    if (isset($loginErrorPassword)) {
+    ?>
+      <div class="alert alert-danger m-2" role="alert">
+        Incorrect password
+      </div>
+    <?php
+    }
+    ?>
+    <?php
+    if (isset($loginErrorUsername)) {
+    ?>
+      <div class="alert alert-danger m-2" role="alert">
+        Invalid username
+      </div>
+    <?php
+    }
+    ?>
   <!-- ABOUTPAGE -->
   <div class="container text-center mt-5 ">
     <h2 class="col-12">Contact Me</h2>
@@ -85,7 +105,7 @@ include('./handler.php');
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
-<footer class="mt-auto bg-light text-center">
+<footer class="mt-auto bg-light text-center fixed-bottom">
   Copyright &#169 Ichungelo inc 2021, All rights reserved
 </footer>
 
