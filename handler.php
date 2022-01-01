@@ -46,9 +46,8 @@ if (isset($_POST['register'])) {
 if (isset($_POST['login'])) {
   $username = $_POST['loginUsername'];
   $password = $_POST['loginPassword'];
-  $isRemember = $_POST['remember'];
 
-  if ($isRemember) {
+  if (isset($_POST['remember'])) {
     echo 'Remember success';
   } else {
     $usernameCheckQuery = "SELECT * FROM users WHERE username = '$username'";
