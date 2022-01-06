@@ -59,30 +59,33 @@ include("./handler.php");
       <div class="card my-1">
         <h4 class="card-title text-center my-3">Settings</h4>
         <div class="container">
-          <form class="row px-5 py-2" method="POST">
+          <form class="row" method="POST">
             <h5 class="col-12">Edit Profile</h5>
-            <div class="form-group col-12">
+            <div class="form-group col-md-12">
               <label for="email">Edit your email address</label>
               <input type="email" class="form-control form-control-sm" name="email" aria-describedby="emailHelp" placeholder="Enter your new email..." value="<?= $_SESSION['email'] ?>" required>
             </div>
-            <div class="form-group col-6">
+            <div class="form-group col-md-6">
               <label for="first-name">Edit your first name</label>
               <input type="text" class="form-control form-control-sm" name="first-name" placeholder="Enter your new first name..." value="<?= $_SESSION['firstName'] ?>" required>
             </div>
-            <div class="form-group col-6">
+            <div class="form-group col-md-6">
               <label for="last-name">Edit your last name</label>
               <input type="text" class="form-control form-control-sm" name="last-name" placeholder="Enter your new last name..." value="<?= $_SESSION['lastName'] ?>" required>
             </div>
-            <div class="form-group col-12">
+            <div class="form-group col-md-12">
               <label for="username">Edit your username</label>
               <input type="text" class="form-control form-control-sm" name="username" minlength="8" value="<?= $_SESSION['username'] ?>" placeholder="Enter your new username..." required>
             </div>
-            <button type="submit" class="btn btn-warning mx-3" name="profileUpdate" onclick="return confirm('Are you sure you want to update your profile?')">Edit Profile</button>
+            <button type="submit" class="btn btn-warning mx-3 btn-block" name="profileUpdate" onclick="return confirm('Are you sure you want to update your profile?')">Edit Profile</button>
           </form>
-          <div class="row px-5 py-2">
-            <h5 class="col-12">Account</h5>
-            <p class="col-8">Delete account</p>
-            <a class="col-4 btn btn-sm btn-danger mb-3" href="account-delete.php" onclick="return confirm('Are you sure you want to delete your account?')">delete account</a>
+          <div class="mt-5">
+            <div class="container">
+              <div class="row">
+                <h5 class="col-12">Account</h5>
+                <a class="btn-block btn btn-danger mb-3" href="account-delete.php" onclick="return confirm('Are you sure you want to delete your account?')">delete account</a>
+              </div>
+            </div>
           </div>
         </div>
 
