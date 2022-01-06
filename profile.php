@@ -48,6 +48,7 @@ include("./handler.php");
   <div class="container d-flex justify-content-center private-margin-nav">
     <div class="col-lg-8">
       <div class="card my-1">
+        <a class="text-right m-3" href="setting.php"><img src="./assets/icons/settings.svg" alt=""></a>
         <h4 class="card-title text-center my-2"><?= $_SESSION['username'] ?></h4>
         <div class="card-body">
           <div class="text-center">
