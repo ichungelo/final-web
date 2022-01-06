@@ -193,31 +193,38 @@ if (isset($_POST['profileUpdate'])) {
   $lastName = $_POST['last-name'];
   $username = $_POST['username'];
 
-  $updateProfileQuery = "UPDATE 
-  users
-    SET 
-      email = '$email',
-      first_name = '$firstName',
-      last_name = '$lastName',
-      username = '$username'
-    WHERE
-      user_id = '$userId'";
-  $updateProfileHandler = mysqli_query($connection, $updateProfileQuery) or die(mysqli_error($connection));
-  if ($updateProfileHandler) {
-    $_SESSION['email'] = $email;
-    $_SESSION['username'] = $username;
-    $_SESSION['firstName'] = $firstName;
-    $_SESSION['lastName'] = $lastName;
-    echo "
-    <script>
-      alert('Profile successfully updated')
-      window.location.href = 'profile.php';
-    </script>";
+  $usernameCheckQuery = "SELECT username FROM users WHERE username = '$username'";
+  $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery);
+
+  if (mysqli_fetch_assoc($usernameCheckHandler)) {
+    $updateErrorUsername = true;
   } else {
-    echo "
-    <script>
-      alert('Failed to update profile')
-    </script>";
+    $updateProfileQuery = "UPDATE 
+    users
+      SET 
+        email = '$email',
+        first_name = '$firstName',
+        last_name = '$lastName',
+        username = '$username'
+      WHERE
+        user_id = '$userId'";
+    $updateProfileHandler = mysqli_query($connection, $updateProfileQuery) or die(mysqli_error($connection));
+    if ($updateProfileHandler) {
+      $_SESSION['email'] = $email;
+      $_SESSION['username'] = $username;
+      $_SESSION['firstName'] = $firstName;
+      $_SESSION['lastName'] = $lastName;
+      echo "
+      <script>
+        alert('Profile successfully updated')
+        window.location.href = 'profile.php';
+      </script>";
+    } else {
+      echo "
+      <script>
+        alert('Failed to update profile')
+      </script>";
+    }
   }
 }
 
@@ -248,6 +255,8 @@ if (isset($_POST['accountDelete'])) {
           alert('Failed to Delete account')
         </script>";
       }
+    } else {
+      $wrongPasswordOnDelete = true;
     }
   }
 }

@@ -47,6 +47,15 @@ include("./handler.php");
   <!-- PROFILE -->
   <div class="container d-flex justify-content-center private-margin-nav">
     <div class="col-lg-8">
+      <?php
+      if (isset($wrongPasswordOnDelete)) {
+      ?>
+        <div class="alert alert-danger" role="alert">
+          Wrong Password
+        </div>
+      <?php
+      }
+      ?>
       <div class="card mt-3">
         <h4 class="card-title text-center my-2">Confirmation</h4>
         <div class="card-body">

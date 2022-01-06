@@ -47,6 +47,15 @@ include("./handler.php");
   <!-- PROFILE -->
   <div class="container d-flex justify-content-center private-margin-nav">
     <div class="col-lg-8">
+    <?php
+      if (isset($updateErrorUsername)) {
+      ?>
+        <div class="alert alert-danger" role="alert">
+          Username already used.
+        </div>
+      <?php
+      }
+      ?>
       <div class="card my-1">
         <h4 class="card-title text-center my-3">Settings</h4>
         <div class="container">
