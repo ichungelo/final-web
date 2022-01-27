@@ -197,7 +197,36 @@ if (isset($_POST['profileUpdate'])) {
   $usernameCheckHandler = mysqli_query($connection, $usernameCheckQuery);
 
   if (mysqli_fetch_assoc($usernameCheckHandler)) {
-    $updateErrorUsername = true;
+    if ($username === $_SESSION['username']) {
+      $updateProfileQuery = "UPDATE 
+    users
+      SET 
+        email = '$email',
+        first_name = '$firstName',
+        last_name = '$lastName',
+        username = '$username'
+      WHERE
+        user_id = '$userId'";
+      $updateProfileHandler = mysqli_query($connection, $updateProfileQuery) or die(mysqli_error($connection));
+      if ($updateProfileHandler) {
+        $_SESSION['email'] = $email;
+        $_SESSION['username'] = $username;
+        $_SESSION['firstName'] = $firstName;
+        $_SESSION['lastName'] = $lastName;
+        echo "
+      <script>
+        alert('Profile successfully updated')
+        window.location.href = 'profile.php';
+      </script>";
+      } else {
+        echo "
+      <script>
+        alert('Failed to update profile')
+      </script>";
+      }
+    } else {
+      $updateErrorUsername = true;
+    }
   } else {
     $updateProfileQuery = "UPDATE 
     users
